@@ -16,6 +16,10 @@ import {TextField} from "@material-ui/core";
 import {Marker} from "../../api/model";
 import {withRouter} from "react-router";
 
+/**
+ * Describes the marker icon in map 
+ */
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -23,6 +27,7 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
+// Describes on the position of marker and set lat and lng value
 
 interface LocationMarkerProps {
     updateCenter?: (lat: number, lng: number) => void
@@ -32,6 +37,8 @@ interface LocationMarkerProps {
         lng: number
     }
 }
+
+// Based on the searchvalue it returns the location suggestions
 
 function LocationMarker(props: LocationMarkerProps) {
     const {updateCenter} = props
@@ -63,6 +70,8 @@ function LocationMarker(props: LocationMarkerProps) {
         }
     }
 
+   // Take on the value at current location of marker when enter key is pressed
+
     const handleEnter = () => {
         let item = suggestions[selected]
         if (item) {
@@ -78,6 +87,9 @@ function LocationMarker(props: LocationMarkerProps) {
             setDisplay(0)
         }
     }
+
+    // handle the keys up down and enter through location suggestions
+
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         console.log(e.key)
         if (e.key === 'ArrowUp' && suggestions.length > 0) {
@@ -111,6 +123,9 @@ function LocationMarker(props: LocationMarkerProps) {
                 }
 
             },
+
+            // Enables to drag the location marker throughout the map
+
             drag(e) {
                 let latlng = map.getCenter()
                 setPosition(latlng)
@@ -121,6 +136,9 @@ function LocationMarker(props: LocationMarkerProps) {
 
 
             },
+            
+            // Enables to zoom out and zoom in within the map
+
             zoomlevelschange(e) {
                 let latlng = map.getCenter()
                 setPosition(latlng)
@@ -130,6 +148,9 @@ function LocationMarker(props: LocationMarkerProps) {
                 setDisplay(0)
 
             },
+
+            // fetch the position of founded location
+
             locationfound(e) {
                 setPosition(e.latlng)
                 map.setView(e.latlng, e.accuracy)
@@ -138,6 +159,9 @@ function LocationMarker(props: LocationMarkerProps) {
                     updateCenter(e.latlng.lat, e.latlng.lng)
                 }
             },
+
+            // Displays an error message asking the user to enable location services
+
             locationerror(e) {
                 toast.error("Location is Disabled, Please enable location from the settings Menu", {
                     position: 'bottom-center'
