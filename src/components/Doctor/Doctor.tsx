@@ -41,7 +41,8 @@ interface CommunicationProps {
     phone_number: number, 
     title: string, 
     icon: string, 
-    text: string
+    text: string,
+    class: string
 };
 
 class DoctorStats extends React.Component<StatsProps,{}> {
@@ -55,7 +56,7 @@ class DoctorStats extends React.Component<StatsProps,{}> {
                         src={this.props.icon}
                     />
                 </div>
-                <div className="text-2 nunito-semi-bold-ebony-clay-17px">
+                <div className="stats-value nunito-semi-bold-ebony-clay-17px">
                     {this.props.value}
                 </div>
                 <div className="patients nunito-bold-lynch-12px">
@@ -71,7 +72,7 @@ class Communication extends React.Component<CommunicationProps,{}>{
         return (
             <a href={`tel:${this.props.phone_number}`}>
                 <div className="message">
-                    <div className="overlap-group-1">
+                    <div className={`overlap-group-1 ${this.props.class}`}>
                         <img alt={""}
                             className="icon"
                             src={this.props.icon}
@@ -169,16 +170,19 @@ class DoctorLoc extends AuthComponent<AuthPropsLoc, DetailsState> {
                 <div className="communication">
                     <div className="communication-1 nunito-semi-bold-ebony-clay-18px">Communication</div>
                     <Communication 
+                        class={"blue"}
                         phone_number={model.phone_number} 
                         icon={icon5} 
                         title={"Messaging"} 
                         text={"Chat with your doctor."} />
                     <Communication 
+                        class={"red"}
                         phone_number={model.phone_number} 
                         icon={icon6} 
                         title={"Audio Call"} 
                         text={"Call your doctor directly."} />
                     <Communication 
+                        class={"green"}
                         phone_number={model.phone_number} 
                         icon={icon7} 
                         title={"Video Call"} 

@@ -368,8 +368,7 @@ body{
     width: 25px;
 }
 
-.text-2 {
-    align-self: flex-end;
+.stats-value {
     letter-spacing: 0.1rem;
     margin-top: 17px;
     min-height: 23px;
@@ -512,8 +511,6 @@ body{
 
 .overlap-group-1 {
     align-items: flex-start;
-    background-color:
-            #eda1ab26;
     border-radius: 15px;
     display: flex;
     height: 52px;
@@ -521,6 +518,18 @@ body{
     margin-top: -7px;
     min-width: 52px;
     padding: 16.0px 16.0px;
+}
+
+.overlap-group-1.red {
+    background-color: #eda1ab26;
+}
+
+.overlap-group-1.blue {
+    background-color: #7acefa26;
+}
+
+.overlap-group-1.green {
+    background-color: #f7c48026;
 }
 
 .icon {
@@ -559,19 +568,6 @@ body{
     width: 165.792271%;
 }
 
-.overlap-group-2 {
-    align-items: center;
-    background-color:
-            #7acefa26;
-    border-radius: 15px;
-    display: flex;
-    height: 52px;
-    margin-left: -1px;
-    margin-top: -1px;
-    min-width: 12.560386473429952%;
-    padding: 0 16px;
-}
-
 .flex-col-1 {
     align-items: flex-start;
     align-self: center;
@@ -602,18 +598,6 @@ body{
     margin-top: 12px;
     overflow: hidden;
     width: 209.995169%
-}
-
-.overlap-group-3 {
-    align-items: center;
-    background-color:
-            #f7c48026;
-    border-radius: 15px;
-    display: flex;
-    height: 52px;
-    margin-top: -1px;
-    min-width: 12.560386473429952%;
-    padding: 0 16px;
 }
 
 .icon-6 {
