@@ -290,7 +290,7 @@ body{
 .image {
     align-self: flex-end;
     height: 178px;
-    margin-left: auto;
+    margin-left: 24%;
     width: 42.99516908212561%;
 }
 
@@ -320,6 +320,7 @@ body{
 }
 
 .flex-row-1 {
+    margin-left: 52px;
     align-items: flex-start;
     display: flex;
     height: 132px;
@@ -479,7 +480,7 @@ body{
     height: 214px;
     margin-left: 27px;
     margin-top: 32px;
-    width: 50.96618357487923%;
+    width: 89.966184%;
 }
 
 .communication-1 {
@@ -490,12 +491,13 @@ body{
 .message {
     align-items: flex-start;
     display: flex;
-    height: 50px;
-    justify-content: center;
-    margin-top: 15px;
+    height: 51px;
+    justify-content: left;
+    margin-top: 20px;
     overflow: hidden;
-    width: 50.96618357487923%;
+    width: 250.966184%;
 }
+
 
 .overlap-group-1 {
     align-items: flex-start;
@@ -505,7 +507,7 @@ body{
     display: flex;
     height: 52px;
     justify-content: flex-end;
-    margin-top: -1px;
+    margin-top: -7px;
     min-width: 52px;
     padding: 16.0px 16.0px;
 }
@@ -543,7 +545,7 @@ body{
     height: 50px;
     margin-top: 12px;
     overflow: hidden;
-    width: 48.79227053140097%;
+    width: 165.792271%;
 }
 
 .overlap-group-2 {
@@ -567,8 +569,8 @@ body{
     margin-left: 9px;
     margin-top: 2.0px;
     min-height: 40px;
-    width: 34.29951690821256%;
-}
+    width: 54.299517%;
+}   
 
 .audio-call {
     letter-spacing: 0.27px;
@@ -585,10 +587,10 @@ body{
     align-items: flex-start;
     display: flex;
     height: 50px;
-    justify-content: center;
+    justify-content: left;
     margin-top: 12px;
     overflow: hidden;
-    width: 42.99516908212561%;
+    width: 209.995169%
 }
 
 .overlap-group-3 {
@@ -616,7 +618,7 @@ body{
     margin-left: 9px;
     margin-top: 2.0px;
     min-height: 40px;
-    width: 28.743961352657006%;
+    width: 34.743961%;
 }
 
 .video-call-1 {
@@ -633,12 +635,10 @@ body{
 .button {
     align-items: flex-start;
     display: flex;
-    height: 60px;
+    padding:1rem;
     justify-content: center;
-    margin-right: 4.0px;
-    margin-top: 42px;
-    overflow: hidden;
     width: 86.95652173913044%;
+    margin: 2.5rem auto 5rem auto;
 }
 
 .overlap-group3 {
