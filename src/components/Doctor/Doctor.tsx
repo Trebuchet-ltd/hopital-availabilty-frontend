@@ -13,11 +13,11 @@ import icon6 from "./icons/icon-6@2x.svg";
 import icon7 from "./icons/icon-7@2x.svg";
 
 import {AuthComponent, AuthPropsLoc, AuthState} from "../../api/auth";
-import React from "react";
 
 import {Container} from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import {withRouter} from "react-router";
+import React from "react";
 
 interface DetailsState extends AuthState {
     id: number,
@@ -29,6 +29,65 @@ interface DetailsState extends AuthState {
 
 
 }
+
+interface StatsProps {
+    value: number, 
+    title: string, 
+    icon: string, 
+    class: string
+};
+
+interface CommunicationProps {
+    phone_number: number, 
+    title: string, 
+    icon: string, 
+    text: string
+};
+
+class DoctorStats extends React.Component<StatsProps,{}> {
+    render(){
+        return (
+            <div className="overlap-group">
+                <div className={`group ${this.props.class}`} >
+                    <img 
+                        alt={this.props.title}
+                        className="icon-3"
+                        src={this.props.icon}
+                    />
+                </div>
+                <div className="text-2 nunito-semi-bold-ebony-clay-17px">
+                    {this.props.value}
+                </div>
+                <div className="patients nunito-bold-lynch-12px">
+                    {this.props.title}
+                </div>
+            </div>
+        );
+    }
+};
+
+class Communication extends React.Component<CommunicationProps,{}>{
+    render(){
+        return (
+            <a href={`tel:${this.props.phone_number}`}>
+                <div className="message">
+                    <div className="overlap-group-1">
+                        <img alt={""}
+                            className="icon"
+                            src={this.props.icon}
+                        />
+                    </div>
+                    <div className="flex-col">
+
+                        <div className="messaging nunito-bold-ebony-clay-16px">{this.props.title}</div>
+                        <p className="chat-me-up-share-ph nunito-bold-lynch-12px">{this.props.text}</p>
+                    </div>
+
+                </div>
+            </a>
+        );
+    }
+};
 
 class DoctorLoc extends AuthComponent<AuthPropsLoc, DetailsState> {
 
@@ -81,117 +140,54 @@ class DoctorLoc extends AuthComponent<AuthPropsLoc, DetailsState> {
                              src={icon}
                         />
                     </div>
-                    <div className="text-1nunito-semi-bold-ebony-clay-20px">
+                    <div className="text-1 nunito-semi-bold-ebony-clay-20px">
                         {model.name}
                     </div>
-                    <div className="viralogistnunito-semi-bold-lynch-14px">
+                    <div className="viralogist nunito-semi-bold-lynch-14px">
                         {model.specialization}
                     </div>
                     <div className="flex-row-1">
-                        <div className="overlap-group">
-                            <div className="group">
-                                <img alt={""}
-                                     className="icon-3"
-                                     src={icon2}
-                                />
-                            </div>
-                            <div className="text-2nunito-semi-bold-ebony-clay-17px">
-                                {model.patients}
-                            </div>
-                            <div className="patientsnunito-bold-lynch-12px"> Patients</div>
-                        </div>
-                        <div className="overlap-group1">
-                            <div className="group-1">
-                                <img alt={""}
-                                     className="icon-4"
-                                     src={icon3}
-                                />
-                            </div>
-                            <div className="addressnunito-semi-bold-ebony-clay-16px">
-                                {model.experience}
-                            </div>
-                            <div className="experiencenunito-bold-lynch-12px">Experience</div>
-                        </div>
-                        <div className="overlap-group2">
-                            <div className="group-2">
-                                <img alt={""}
-                                     className="icon-5"
-                                     src={icon4}
-                                />
-                            </div>
-                            <div className="text-3nunito-semi-bold-ebony-clay-17px">
-                                {model.rating}
-                            </div>
-                            <div className="ratingsnunito-bold-lynch-12px">Rating</div>
-                        </div>
+                        <DoctorStats value={model.patients} title={"Patients"} icon={icon2} class={"blue"}/>
+                        <DoctorStats value={model.experience} title={"Experience"} icon={icon3} class={"red"}/>
+                        <DoctorStats value={model.rating} title={"Rating"} icon={icon4} class={"yellow"}/>
                     </div>
                 </div>
                 <div className={"about"}>
-                    <div className="about-doctornunito-semi-bold-ebony-clay-18px">
+                    <div className="about-doctor nunito-semi-bold-ebony-clay-18px">
                         {model.about}
                     </div>
-                    <p className="dr-bellamy-nicholasnunito-bold-lynch-14px">
+                    <p className="dr-bellamy-nicholas nunito-bold-lynch-14px">
                         {model.name}
                     </p>
                 </div>
                 <div className={"about "}>
-                    <div className="about-doctornunito-semi-bold-ebony-clay-18px">Working Time</div>
-                    <p className="dr-bellamy-nicholasnunito-bold-lynch-14px">
+                    <div className="about-doctor nunito-semi-bold-ebony-clay-18px">Working Time</div>
+                    <p className="dr-bellamy-nicholas nunito-bold-lynch-14px">
                         {model.working_time}
                     </p>
                 </div>
                 <div className="communication">
-                    <div className="communication-1nunito-semi-bold-ebony-clay-18px">Communication</div>
-                    <a href={`tel:${model.phone_number}`}>
-                        <div className="message">
-                            <div className="overlap-group-1">
-                                <img alt={""}
-                                     className="icon"
-                                     src={icon5}
-                                />
-                            </div>
-                            <div className="flex-col">
-
-                                <div className="messagingnunito-bold-ebony-clay-16px">Messaging</div>
-                                <p className="chat-me-up-share-phnunito-bold-lynch-12px">Chat with me</p>
-                            </div>
-
-                        </div>
-                    </a>
-                    <a href={`tel:${model.phone_number}`}>
-                        <div className="audio">
-                            <div className="overlap-group-2">
-                                <img alt={""}
-                                     className="icon"
-                                     src={icon6}
-                                />
-                            </div>
-                            <div className="flex-col-1">
-                                <div className="audio-callnunito-bold-ebony-clay-16px">Audio Call</div>
-                                <div className="call-your-doctor-dirnunito-bold-lynch-12px">Call your doctor directly.
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href={`tel:${model.phone_number}`}>
-                        <div className="video-call">
-                            <div className="overlap-group-3">
-                                <img alt={""}
-                                     className="icon-6"
-                                     src={icon7}
-                                />
-                            </div>
-                            <div className="flex-col-2">
-                                <div className="video-call-1nunito-bold-ebony-clay-16px">Video Call</div>
-                                <div className="text-4nunito-bold-lynch-12px">See your doctor live.</div>
-                            </div>
-                        </div>
-                    </a>
+                    <div className="communication-1 nunito-semi-bold-ebony-clay-18px">Communication</div>
+                    <Communication 
+                        phone_number={model.phone_number} 
+                        icon={icon5} 
+                        title={"Messaging"} 
+                        text={"Chat with your doctor."} />
+                    <Communication 
+                        phone_number={model.phone_number} 
+                        icon={icon6} 
+                        title={"Audio Call"} 
+                        text={"Call your doctor directly."} />
+                    <Communication 
+                        phone_number={model.phone_number} 
+                        icon={icon7} 
+                        title={"Video Call"} 
+                        text={"See your doctor live."} />
                 </div>
                 <div className="button">
                     <div className="overlap-group3">
                         <div
-                            className="book-appointmentnunito-bold-white-16px"
+                            className="book-appointment nunito-bold-white-16px"
                             onClick={() => alert("Will be available in the next release.")}
                         >Book Appointment</div>
                     </div>
