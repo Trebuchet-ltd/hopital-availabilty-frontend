@@ -19,6 +19,7 @@ import {ThemeProvider} from "@material-ui/styles";
 import {green, pink} from '@material-ui/core/colors';
 import {Privacy} from "./components/Privacy/Privacy";
 import {Add} from "./components/AddHospital/Add";
+import {DoctorComponent} from './components/Doctor/Doctor';
 
 const theme = createMuiTheme({
     palette: {
@@ -45,7 +46,7 @@ interface AppDispatchProps {
 
 class AppLoc extends React.Component<AppProps & AppDispatchProps> {
     /**
-     * Initialize props 
+     * Initialize props
      * Set the location into history stack
      */
 
@@ -55,6 +56,7 @@ class AppLoc extends React.Component<AppProps & AppDispatchProps> {
         this.props.history.replace(location)
         refresh_user()
     }
+
     /**
      * componentDidMount() method allows us to execute the React code even after component is rendered
      */
@@ -64,6 +66,7 @@ class AppLoc extends React.Component<AppProps & AppDispatchProps> {
         getParam('loc', 'Search Location', true)
         getParam('query', 'Search Hospital', true)
     }
+
     /**
      * componentDidUpdate() method use to execute the code when the state of component changes
      */
@@ -97,47 +100,45 @@ class AppLoc extends React.Component<AppProps & AppDispatchProps> {
                     <BottomNav/>
 
                     <Switch>
-                        {/* If the current URL is /about, this route is rendered
-            while the rest are ignored */}
-
+                        <Route path="/doctor/:docId" children={DoctorComponent} /> {/* Show details about a doctor */}
                         <Route path="/details/:hspId">
                             <NavBar/>
                             <Details/>
-                         {/* If the current URL is /search, this route is rendered
+                            {/* If the current URL is /search, this route is rendered
             while the rest are ignored */}
                         </Route>
                         <Route path="/search">
                             <NavBar/>
                             <Search/>
                         </Route>
-                         {/* If the current URL is /profile, this route is rendered
+                        {/* If the current URL is /profile, this route is rendered
             while the rest are ignored */}
                         <Route path="/profile/">
                             <NavBar/>
                             <Profile/>
-                         {/* If the current URL is /set_token, this route is rendered
+                            {/* If the current URL is /set_token, this route is rendered
             while the rest are ignored */}
                         </Route>
                         <Route path="/set_token/">
                             <HandleToken/>
                         </Route>
-                         {/* If the current URL is /invite, this route is rendered
+                        {/* If the current URL is /invite, this route is rendered
             while the rest are ignored */}
                         <Route path="/invite/">
                             <HandleInvite/>
                         </Route>
-                         {/* If the current URL is /AddHospital, this route is rendered
+                        {/* If the current URL is /AddHospital, this route is rendered
             while the rest are ignored */}
                         <Route path="/AddHospital/">
                             <NavBar/>
                             <Add/>
                         </Route>
-                         {/* If the current URL is /privacypolicy, this route is rendered
+                        {/* If the current URL is /privacypolicy, this route is rendered
             while the rest are ignored */}
                         <Route path="/privacypolicy/">
                             <Privacy/>
                         </Route>
-                          {/* If the current URL is /, this route is rendered
+                        {/* If the current URL is /, this route is rendered
             while the rest are ignored */}
                         <Route path="/">
                             <NavBar/>

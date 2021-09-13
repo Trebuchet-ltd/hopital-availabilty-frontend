@@ -4,7 +4,9 @@ import {AuthComponent, AuthPropsLoc, AuthState} from "../../api/auth";
 import {withRouter} from "react-router";
 import {AiFillHome, BsPersonFill, FaHandsHelping, FaHospitalAlt} from "react-icons/all";
 
-
+/**
+ * AuthState called into BottomNavState and assigned value to string type 
+ */
 interface BottomNavState extends AuthState {
     value: string
 }
@@ -16,6 +18,10 @@ class BottomNavLoc extends AuthComponent<AuthPropsLoc, BottomNavState> {
         this.state = {...this.state, value}
     }
 
+    /**
+     * returns string corresponding to path 
+     * @returns string
+     */
     getActive() {
         return this.props.location.pathname.includes('/profile/addRequest') ? '/profile/addRequest' :
             this.props.location.pathname.includes('/addHospital') ? '/addHospital' :
@@ -24,8 +30,14 @@ class BottomNavLoc extends AuthComponent<AuthPropsLoc, BottomNavState> {
 
     hashChange = () => {
         console.log(this.getActive())
-        this.setState({value: this.getActive()})
+        this.setState({value: this.getActive()}) //passing string corresponding to path to value
     }
+
+    /**
+     * set the value to state and redirect to value
+     * @param event 
+     * @param value 
+     */
     handleChange = (event: React.ChangeEvent<{}>, value: string) => {
         this.setState({value})
         this.props.history.push(value)

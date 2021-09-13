@@ -1,0 +1,715 @@
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofA6sKUbOvISTs.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofA6sKUZevISTs.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofA6sKUbuvISTs.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofA6sKUb-vISTs.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofA6sKUYevI.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAjsOUbOvISTs.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAjsOUZevISTs.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAjsOUbuvISTs.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAjsOUb-vISTs.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.gstatic.com/s/nunito/v16/XRXW3I6Li01BKofAjsOUYevI.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+    --ebony-clay:
+            rgba(34, 43, 69, 1);
+    --mine-shaft:
+            rgba(48, 48, 48, 1);
+    --royal-blue:
+            rgba(62, 100, 255, 1);
+    --pale-sky:
+            rgba(104, 118, 132, 1);
+    --lynch:
+            rgba(106, 118, 154, 1);
+    --amethyst:
+            rgba(162, 83, 219, 0.149);
+    --ghost:
+            rgba(199, 201, 217, 1);
+    --onahau:
+            rgba(203, 232, 255, 0.251);
+    --catskill-white:
+            rgba(241, 244, 247, 1);
+    --yellow-orange:
+            rgba(255, 175, 55, 0.149);
+    --white:
+            rgba(255, 255, 255, 1);
+
+    --font-size-s: 12px;
+    --font-size-m: 14px;
+    --font-size-l: 16px;
+    --font-size-xl: 17px;
+    --font-size-xxl: 18px;
+    --font-size-xxxl: 20px;
+
+    --font-family-nunito: "Nunito";
+}
+
+.nunito-bold-ebony-clay-18px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-xxl);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nunito-semi-bold-mine-shaft-16px {
+    color: var(--mine-shaft);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-l);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-semi-bold-ebony-clay-16px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-l);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-bold-ebony-clay-14px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-m);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.border-1px-catskill-white {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--catskill-white);
+}
+
+.nunito-normal-ghost-14px {
+    color: var(--ghost);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nunito-bold-lynch-12px {
+    color: var(--lynch);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-s);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nunito-semi-bold-ebony-clay-18px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-xxl);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-bold-white-16px {
+    color: var(--white);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-l);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nunito-normal-pale-sky-12px {
+    color: var(--pale-sky);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-s);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nunito-semi-bold-ebony-clay-20px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-xxxl);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-bold-lynch-14px {
+    color: var(--lynch);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-m);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.nunito-normal-pale-sky-14px {
+    color: var(--pale-sky);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nunito-semi-bold-ebony-clay-17px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-semi-bold-lynch-14px {
+    color: var(--lynch);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-m);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.nunito-bold-ebony-clay-16px {
+    color: var(--ebony-clay);
+    font-family: var(--font-family-nunito);
+    font-size: var(--font-size-l);
+    font-weight: 700;
+    font-style: normal;
+}
+
+body{
+    font-family: 'Nunito', "Segoe UI", Roboto, sans-serif;
+}
+
+.doctor-s-details {
+    align-items: center;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.overlap-group4 {
+    align-items: center;
+    background-image: url(icons/bg@2x.svg);
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 470px;
+    padding: 21px 0;
+    width: 100%;
+}
+
+.flex-row {
+    align-items: flex-start;
+    display: flex;
+    height: 191px;
+    margin-top: 17px;
+    min-width: 86.95652173913044%;
+}
+
+.back {
+    align-items: flex-start;
+    background-color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    height: 40px;
+    min-width: 9.66183574879227%;
+    padding: 12.0px 11px;
+}
+
+.icon-1 {
+    height: 14px;
+    width: 16px;
+}
+
+.image {
+    align-self: flex-end;
+    height: 178px;
+    margin-left: auto;
+    width: 42.99516908212561%;
+}
+
+.icon-2 {
+    height: 18px;
+    margin-left: 85px;
+    margin-top: 11px;
+    width: 4px;
+}
+
+.text-1 {
+    letter-spacing: 0.33px;
+    margin-left: 2.0px;
+    margin-top: 13px;
+    min-height: 27px;
+    min-width: 47.34299516908213%;
+    text-align: center;
+}
+
+.viralogist {
+    letter-spacing: 0.23px;
+    margin-left: 2.0px;
+    margin-top: 9px;
+    min-height: 19px;
+    min-width: 23.188405797101453%;
+    text-align: center;
+}
+
+.flex-row-1 {
+    align-items: flex-start;
+    display: flex;
+    height: 132px;
+    margin-top: 20px;
+    min-width: 87.43961352657006%
+}
+
+.overlap-group {
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 21px;
+    box-shadow: 0 10px 25px
+    #6a769a0d;
+    display: flex;
+    flex-direction: column;
+    min-height: 132px;
+    padding: 1px 25px;
+    width: 27.05314009661836%;
+}
+
+.group {
+    align-items: flex-end;
+    background-image: url(icons/rectangle@2x.svg);
+    background-size: 100% 100%;
+    display: flex;
+    height: 63px;
+    margin-left: 1px;
+    min-width: 11.835748792270532%;
+    padding: 9px 12px;
+}
+
+.icon-3 {
+    height: 22px;
+    width: 25px;
+}
+
+.text-2 {
+    align-self: flex-end;
+    letter-spacing: 0.1rem;
+    margin-top: 17px;
+    min-height: 23px;
+    min-width: 13.52657004830918%;
+    text-align: center;
+}
+
+.patients {
+    letter-spacing: 0.37px;
+    margin-left: 2px;
+    margin-top: 1px;
+    min-height: 16px;
+    min-width: 12.077294685990339%;
+    text-align: center;
+}
+
+.overlap-group1 {
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 21px;
+    box-shadow: 0 10px 25px #6a769a0d;
+    display: flex;
+    flex-direction: column;
+    margin-left: 13px;
+    min-height: 132px;
+    padding: 1px 22px;
+    width: 27.05314009661836%;
+}
+
+.group-1 {
+    align-items: flex-end;
+    background-image: url(icons/rectangle-1@2x.svg);
+    background-size: 100% 100%;
+    display: flex;
+    height: 63px;
+    justify-content: flex-end;
+    margin-left: 1px;
+    min-width: 11.835748792270532%;
+    padding: 9px 16px;
+}
+
+.icon-4 {
+    height: 22px;
+    width: 16px;
+}
+
+.address {
+    letter-spacing: 0.49px;
+    margin-left: 5px;
+    margin-top: 16px;
+    min-height: 22px;
+    min-width: 12.077294685990339%;
+    text-align: center;
+}
+
+.experience {
+    align-self: flex-end;
+    letter-spacing: 0.37px;
+    margin-top: 3px;
+    min-height: 16px;
+    min-width: 15.942028985507248%;
+    text-align: center;
+}
+
+.overlap-group2 {
+    align-items: flex-end;
+    background-color: var(--white);
+    border-radius: 21px;
+    box-shadow: 0 10px 25px
+    #6a769a0d;
+    display: flex;
+    flex-direction: column;
+    margin-left: 13px;
+    min-height: 132px;
+    padding: 1px 31px;
+    width: 27.05314009661836%;
+}
+
+.group-2 {
+    align-items: flex-end;
+    background-image: url(icons/rectangle-2@2x.svg);
+    background-size: 100% 100%;
+    display: flex;
+    height: 63px;
+    justify-content: flex-end;
+    margin-right: 0.5px;
+    min-width: 11.835748792270532%;
+    padding: 9px 12.4px;
+}
+
+.icon-5 {
+    height: 22px;
+    width: 24px;
+}
+
+.text-3 {
+    align-self: center;
+    letter-spacing: 0.52px;
+    margin-left: 4.0px;
+    margin-top: 17px;
+    min-height: 23px;
+    min-width: 28px;
+    text-align: center;
+}
+
+.ratings {
+    letter-spacing: 0.37px;
+    margin-top: 1px;
+    min-height: 16px;
+    min-width: 11.352657004830919%;
+    text-align: center;
+}
+
+.communication {
+    align-items: flex-start;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 214px;
+    margin-left: 27px;
+    margin-top: 32px;
+    width: 50.96618357487923%;
+}
+
+.communication-1 {
+    letter-spacing: 0.30px;
+    min-height: 25px;
+}
+
+.message {
+    align-items: flex-start;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-top: 15px;
+    overflow: hidden;
+    width: 50.96618357487923%;
+}
+
+.overlap-group-1 {
+    align-items: flex-start;
+    background-color:
+            #eda1ab26;
+    border-radius: 15px;
+    display: flex;
+    height: 52px;
+    justify-content: flex-end;
+    margin-top: -1px;
+    min-width: 52px;
+    padding: 16.0px 16.0px;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+}
+
+.flex-col {
+    align-items: flex-start;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 9px;
+    margin-top: 2.0px;
+    min-height: 40px;
+    width: 36.71497584541063%;
+}
+
+.messaging {
+    letter-spacing: 0.27px;
+    min-height: 22px;
+}
+
+.chat-me-up-share-ph {
+    letter-spacing: 0.20px;
+    margin-top: 2px;
+    min-height: 16px;
+}
+
+.audio {
+    align-items: flex-start;
+    display: flex;
+    height: 50px;
+    margin-top: 12px;
+    overflow: hidden;
+    width: 48.79227053140097%;
+}
+
+.overlap-group-2 {
+    align-items: center;
+    background-color:
+            #7acefa26;
+    border-radius: 15px;
+    display: flex;
+    height: 52px;
+    margin-left: -1px;
+    margin-top: -1px;
+    min-width: 12.560386473429952%;
+    padding: 0 16px;
+}
+
+.flex-col-1 {
+    align-items: flex-start;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 9px;
+    margin-top: 2.0px;
+    min-height: 40px;
+    width: 34.29951690821256%;
+}
+
+.audio-call {
+    letter-spacing: 0.27px;
+    min-height: 22px;
+}
+
+.call-your-doctor-dir {
+    letter-spacing: 0.20px;
+    margin-top: 2px;
+    min-height: 16px;
+}
+
+.video-call {
+    align-items: flex-start;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-top: 12px;
+    overflow: hidden;
+    width: 42.99516908212561%;
+}
+
+.overlap-group-3 {
+    align-items: center;
+    background-color:
+            #f7c48026;
+    border-radius: 15px;
+    display: flex;
+    height: 52px;
+    margin-top: -1px;
+    min-width: 12.560386473429952%;
+    padding: 0 16px;
+}
+
+.icon-6 {
+    height: 14px;
+    width: 20px;
+}
+
+.flex-col-2 {
+    align-items: flex-start;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 9px;
+    margin-top: 2.0px;
+    min-height: 40px;
+    width: 28.743961352657006%;
+}
+
+.video-call-1 {
+    letter-spacing: 0.27px;
+    min-height: 22px;
+}
+
+.text-4 {
+    letter-spacing: 0.20px;
+    margin-top: 2px;
+    min-height: 16px;
+}
+
+.button {
+    align-items: flex-start;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    margin-right: 4.0px;
+    margin-top: 42px;
+    overflow: hidden;
+    width: 86.95652173913044%;
+}
+
+.overlap-group3 {
+    align-items: flex-end;
+    background-color: #3E64FF;
+    border-radius: 20px;
+    display: flex;
+    height: 62px;
+    justify-content: flex-end;
+    margin-top: -1px;
+    min-width: 362px;
+    padding: 18px 104.5px;
+}
+
+.book-appointment {
+    letter-spacing: 0.49px;
+    min-height: 22px;
+    min-width: 35.99033816425121%;
+    text-align: center;
+}
+
+.about {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    height: 134px;
+    margin-top: 41px;
+    overflow: hidden;
+    width: 86.95652173913044%;
+}
+
+.about-doctor {
+    letter-spacing: 0.30px;
+    margin-left: 1px;
+    min-height: 25px;
+}
+
+.dr-bellamy-nicholas {
+    letter-spacing: 0.23px;
+    line-height: 20px;
+    margin-top: 9px;
+    min-height: 100px;
+    width: 87.43961352657006%;
+}
+
+.about.working-time {
+    height: 54px;
+    margin-top: 32px;
+}
+
+.about.working-time .dr-bellamy-nicholas {
+    min-height: 20px;
+    white-space: nowrap;
+    width: unset;
+}
+
+.screen a {
+    display: contents;
+    text-decoration: none;
+}
+
+.container-center-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    pointer-events: none;
+    width: 100%;
+}
+
+.container-center-horizontal > * {
+    flex-shrink: 0;
+    pointer-events: auto;
+}
+

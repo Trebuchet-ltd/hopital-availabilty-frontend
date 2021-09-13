@@ -1,4 +1,4 @@
-import Model, {baseUrl, filePost, ModelData, ModelObject} from "./api";
+import Model, {baseUrl, filePost, ModelData, ModelObject, get} from "./api";
 import {getAuth} from "./auth";
 
 interface ImageObject {
@@ -58,6 +58,50 @@ export class MarkerObject extends ModelObject {
 
 }
 
+export class DoctorObject extends ModelObject {
+    id: number = -1;
+    name: string | undefined;
+    phone_number: number = -1;
+    hospital: Array<number> = [];
+    departments: Array<number> = [];
+    user: number = -1;
+    working_time: string | undefined;
+    rating: number = -1;
+    reviews: [] = [];
+    patients: number = -1;
+    experience: number = -1;
+    specialization: string | undefined;
+    about: string | undefined;
+    image: { uri: string | undefined } = { uri: undefined };
+
+    constructor(data: ModelData, baseUrl: string) {
+        super(data, baseUrl);
+        this.fields = ['id', 'name', 'phone_number', 'hospital', 'department', 'user', 'working_time',
+            'rating', 'reviews', 'patients', 'experience', 'specialization', 'about', 'image'];
+        this.getData();
+    }
+
+    // async addPhoto(file: File) {
+    //     const formData = new FormData();
+    //
+    //
+    //     formData.append(
+    //         "image",
+    //         file,
+    //         file.name
+    //     );
+    //     formData.append(
+    //         'hospital',
+    //         this.id.toString()
+    //     )
+    //     let headers = {'Authorization': `Bearer ${getAuth()}`}
+    //
+    //     return await filePost(baseUrl + '/api/image/', formData, headers)
+    // }
+
+
+}
+
 export class ReviewObject extends ModelObject {
 
 
@@ -75,12 +119,12 @@ export class PatientObject extends ModelObject {
     age: number = 0;
     gender: string = 'M';
     address: string = '';
-    symptoms: string='';
-    covidresult: boolean =false;
+    symptoms: string = '';
+    covidresult: boolean = false;
     gender_name: string = '';
     symdays: string = '';
-    spo2: number=0;
-    bedtype_name: string='';
+    spo2: number = 0;
+    bedtype_name: string = '';
     blood: string = '';
     ct: boolean = false;
     ctscore: string = '';
@@ -89,7 +133,7 @@ export class PatientObject extends ModelObject {
         super(data, baseUrl);
         this.fields = ['id', 'Name', 'age', 'gender', 'address', 'symptoms', 'symdays', 'spo2', 'hospitalday', 'oxy_bed', 'covidresult',
             'hospitalpref', 'attendername', 'attenderphone', 'relation', 'srfid', 'bunum', 'blood', 'bedtype', 'ct',
-            'ctscore','gender_name','bedtype_name']
+            'ctscore', 'gender_name', 'bedtype_name']
         this.getData()
     }
 }
@@ -106,6 +150,7 @@ export class susObject extends ModelObject {
 export const Review = new Model(baseUrl + '/api/review/', ReviewObject)
 export const Sus = new Model(baseUrl + '/api/suspicious/', susObject)
 export const Marker = new Model(baseUrl + '/api/marker/', MarkerObject)
+export const Doctor = new Model(baseUrl + '/internals/doctors/', DoctorObject)
 export const Patient = new Model(baseUrl + '/api/patient/', PatientObject)
 
 export type ModelRegistry =

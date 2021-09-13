@@ -19,7 +19,10 @@ import './nabar.css'
 interface NavBarProp extends RouteComponentProps<ResponsiveProps> {
 
 }
-
+/** 
+ * properties of ResponsiveState is called in to NavBarState
+ * Assigning type of variables
+ */
 interface NavBarState extends ResponsiveState {
 
     loc: string,
@@ -31,21 +34,27 @@ interface NavBarState extends ResponsiveState {
 }
 
 export class NavBarLoc extends ResponsiveComponent<NavBarProp, NavBarState> {
-
+/**
+ * Constructor description.
+ * initialize loc, query
+ * @returns { JSX.Element } navBar Component
+ */
     constructor(props: NavBarProp) {
         super(props);
         this.state = {
             ...this.state,
-            loc: getParam('loc', 'Select Location', true),
-            query: getParam('query', 'Search Hospital', true),
-            show_user: window.location.href.includes('#user'),
-            show_filter: window.location.href.includes('#filter'),
-            show_location: window.location.href.includes('#location'),
-            show_search: window.location.href.includes('#search')
+            loc: getParam('loc', 'Select Location', true),       //get parameter or set it as default value 
+            query: getParam('query', 'Search Hospital', true),  //get parameter or set it as default value 
+            show_user: window.location.href.includes('#user'),         //set as true if is url contain #user
+            show_filter: window.location.href.includes('#filter'),    //set as true if is url contain #filter
+            show_location: window.location.href.includes('#location'),   //set as true if is url contain #location
+            show_search: window.location.href.includes('#search')       //set as true if is url contain #search
         }
     }
 
-
+    /**
+     * The function runs on hash change and sets the states appropriately.
+     */
     hashChange = () => {
 
         this.setState({
@@ -57,8 +66,8 @@ export class NavBarLoc extends ResponsiveComponent<NavBarProp, NavBarState> {
     }
 
     render() {
-        let currentLocation = this.props.location.search + this.props.location.hash
-        let showSearchBar = !this.props.location.pathname.includes('/details') &&
+        let currentLocation = this.props.location.search + this.props.location.hash 
+        let showSearchBar = !this.props.location.pathname.includes('/details') &&       //to hide search bar in details, profiles, addhospital
             !this.props.location.pathname.includes('/profile') &&
             !this.props.location.pathname.includes('/addHospital')
         return (
