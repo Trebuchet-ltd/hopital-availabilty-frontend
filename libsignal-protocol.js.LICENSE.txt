@@ -1,0 +1,19 @@
+/**
+     * @license ByteBuffer.js (c) 2013-2014 Daniel Wirtz <dcode@dcode.io>
+     * This version of ByteBuffer.js uses an ArrayBuffer as its backing buffer which is accessed through a DataView and is
+     * compatible with modern browsers.
+     * Released under the Apache License, Version 2.0
+     * see: https://github.com/dcodeIO/ByteBuffer.js for details
+     */
+
+/**
+     * @license long.js (c) 2013 Daniel Wirtz <dcode@dcode.io>
+     * Released under the Apache License, Version 2.0
+     * see: https://github.com/dcodeIO/long.js for details
+     */
+
+/**
+     * @license protobuf.js (c) 2013 Daniel Wirtz <dcode@dcode.io>
+     * Released under the Apache License, Version 2.0
+     * see: https://github.com/dcodeIO/protobuf.js for details
+     */
