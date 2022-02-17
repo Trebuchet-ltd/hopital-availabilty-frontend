@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "com.needmedi.twa",
+                     "sha256_cert_fingerprints": ["A3:58:78:58:6A:C1:F2:AF:E3:35:79:E1:13:2C:EA:EE:46:EC:D9:8A:D1:07:3E:01:F8:AA:54:63:E8:BC:78:1C"] }
+      }
+]

@@ -1,0 +1,79 @@
+{
+  "icons": [
+    {
+      "src": "/icon_512x512.627920178952731991ced6a1e38c5a86.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_384x384.024993462c933b117afca4fcf5b665e9.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_256x256.d8b2991ad275ac928ff18310b1e3c642.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_192x192.63505dcecb851b8824a14179d2059dfc.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_128x128.3c5f73d4d45f0de95cc16673d1401072.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_96x96.5a4ef83894985ac0229a5f54aadeb4e9.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon_512x512.819267d2151c5235f63505330af51831.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.6f53104d3f342741bdad03553fc78faa.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_256x256.dc4f1b74969ed1574b4933d79fa8e7fd.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.43194c2cf71d7f95ecfb97d4dcd98b6a.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.fca2a1d067ac0994dce38b4941e5b694.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.63b6221604dd9615572cb51386bb2dcd.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Need Medi",
+  "short_name": "Need Medi",
+  "orientation": "any",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Facebook for doctors.",
+  "background_color": "#FFFFFF",
+  "theme_color": "#3E64FF",
+  "gcm_sender_id": "569002618626"
+}

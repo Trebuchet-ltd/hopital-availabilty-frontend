@@ -1,0 +1,9 @@
+module.exports = {
+          srcSet: __webpack_public_path__ + "3210bd1bcc06a1e7d47207ff17978a92-64.png"+" 64w",
+          images:[ {path: __webpack_public_path__ + "3210bd1bcc06a1e7d47207ff17978a92-64.png",width: 64,height: 64}],
+          src: __webpack_public_path__ + "3210bd1bcc06a1e7d47207ff17978a92-64.png",
+          toString:function(){return __webpack_public_path__ + "3210bd1bcc06a1e7d47207ff17978a92-64.png"},
+          placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFklEQVQ4jWNgGAWjYBSMglEwChioAgAGVAABHFu6wAAAAABJRU5ErkJggg==",
+          width: 64,
+          height: 64
+        }
