@@ -104,9 +104,9 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
 
                             this.setState({show_search: !this.state.show_search});
                         }}>
-                            <IconButton>
-                                <SearchIcon/>
-                            </IconButton>
+                            {/*<IconButton>*/}
+                            <SearchIcon/>
+                            {/*</IconButton>*/}
                             Search hospitals
                         </button>
                         <Badge onClick={() =>
