@@ -128,6 +128,9 @@ type token = {
     phone_number: string,
     languages: Array<LanguageObject>,
     language: Array<LanguageObject>,
+    address: string,
+    age: number,
+    gender:string
 }
 
 export interface AuthState extends ResponsiveState {

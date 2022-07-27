@@ -83,7 +83,8 @@ class SwiperLoc extends AuthComponent<AuthPropsLoc, SwiperState>
     componentWillUnmount()
     {
         super.componentWillUnmount();
-        this.state.connection.tareDown();
+        if (this.state.connection)
+            this.state.connection.tareDown();
     }
 
     getTime = (date: Date) => date.toLocaleTimeString("en-US", {hour: "numeric", minute: "numeric", hour12: true});

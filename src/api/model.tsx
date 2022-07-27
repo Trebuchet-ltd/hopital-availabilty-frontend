@@ -1,5 +1,5 @@
 import { number, string } from "prop-types";
-import Model, {baseUrl, filePost, ModelData, ModelObject} from "./api";
+import Model, {baseUrl, filePost, ModelData, ModelObject, ModelFilterSet} from "./api";
 import {getAuth} from "./auth";
 import { TFilterChoiceList, TFilterParams } from "./types";
 
@@ -498,6 +498,8 @@ export class DoctorScheduleObject extends MarkerObject{
         this.getData();
     }
 }
+
+export const MarkerFilters = new ModelFilterSet<TMarkerFilter>(ModelFilterSet.metaToParams(markerfilters), markerFilterChoices);
 
 
 export const Review = new Model(baseUrl + "/api/review/", ReviewObject);
