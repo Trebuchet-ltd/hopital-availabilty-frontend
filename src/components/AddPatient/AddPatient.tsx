@@ -21,6 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Checkbox from "@mui/material/Checkbox";
 import lineicon from "../../images/LineCenter.svg";
 import { toast } from "react-toastify";
+import Autocomplete from "@mui/material/Autocomplete";
 
 
 interface AddPatientState extends AuthState {
@@ -61,6 +62,12 @@ interface AddPatientState extends AuthState {
 
 
 export type AuthPropsLoc = RouteComponentProps<Record<string, string | undefined>>
+
+const Symptoms = ["Fever", "Cough", "Running nose", "Headache", "Nausea / Vomiting",
+    "Diarrhea / Stomach upset", "Constipation", "Urine color", "Joint pain", "Body pain",
+    "Fatigue / Weakness", "Inflammation / swelling", "Rashes / Itching", "Sleeplessness",
+    "No appetite", "Sweating", "Chills / shivering", "Anaemia", "Irregular Periods",
+    "Bleeding", "Asthma", "Breathing Difficulty" ];
 
 export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
 {
@@ -176,7 +183,6 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
                     />
                     <TextField value={this.state.gender} className="mt-4" fullWidth variant="outlined" select label="Gender *"
                         InputLabelProps={{ shrink: true, }} size="small"
-
                         onChange={(event) =>
                             this.setValue("gender", event)}
                     >
@@ -225,12 +231,23 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
                 <div className="m-4">
 
                     <p className="mainhead">Tell us about your Medical condition</p>
-
-                    <TextField value={this.state.symptoms} className="mt-2" fullWidth variant="outlined"
-                        label="Symptoms *"
-                        InputLabelProps={{ shrink: true, }} size="small"
-                        onChange={(event) =>
-                            this.setValue("symptoms", event)}
+                    <Autocomplete style={{width: "100%"}}
+                        fullWidth={true}
+                        disablePortal
+                        autoComplete
+                        freeSolo
+                        limitTags={2}
+                        size="small"
+                        multiple={true}
+                        id="combo-box-demo"
+                        options={Symptoms}
+                        sx={{ width: 300 }}
+                        renderInput={(params) => <TextField fullWidth={true} {...params} value={this.state.symptoms}
+                            label="Symptoms *"
+                            InputLabelProps={{ shrink: true, }}
+                            onChange={(event) =>
+                                this.setValue("symptoms", event)}
+                        />}
                     />
                     <TextField value={this.state.symdays} type="date" className="mt-4" fullWidth variant="outlined" label="Symptoms Start Date *"
                         InputLabelProps={{ shrink: true, }} size="small"
