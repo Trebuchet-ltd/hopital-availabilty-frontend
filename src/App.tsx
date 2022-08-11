@@ -255,13 +255,6 @@ class AppLoc extends React.Component<AppProps> {
                             </Suspense>
                             <BottomNav/>
                         </Route>
-                        <Route path={"/help/:id"}>
-                            {/* <Givehelp/> */}
-                            <BottomNav/>
-                            <Suspense>
-                                <ViewHelp/>
-                            </Suspense>
-                        </Route>
                         <Route path={"/help/me/:id"}>
 
                             <BottomNav/>
@@ -269,6 +262,14 @@ class AppLoc extends React.Component<AppProps> {
                                 <ViewHelp me={true} />
                             </Suspense>
                         </Route>
+                        <Route path={"/help/:id"}>
+                            {/* <Givehelp/> */}
+                            <BottomNav/>
+                            <Suspense>
+                                <ViewHelp/>
+                            </Suspense>
+                        </Route>
+                       
                         <Route path={"/searchdoctor"}>
                             <Suspense>
                                 <Searchdoctor/>

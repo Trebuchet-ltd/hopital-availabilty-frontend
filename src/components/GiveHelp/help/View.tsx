@@ -79,7 +79,7 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
             );
         return (
             <>
-                <Medical user={this.state.model}/>
+                <Medical user={this.state.model} view={this.props.me}/>
                 <Container className=" tophead fixed-top d-flex justify-content-between p-3 ">
                     <CloseIcon
                         className="d-flex align-self-center"
