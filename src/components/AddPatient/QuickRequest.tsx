@@ -86,6 +86,11 @@ class QuickRequest extends AuthComponent<AuthPropsLoc, QuickRequestState>
 
     render()
     {
+        if(!this.state.auth)
+        {
+            this.performAuth();
+            return <></>;
+        }
         return (
             <>
 
@@ -117,7 +122,8 @@ class QuickRequest extends AuthComponent<AuthPropsLoc, QuickRequestState>
                                                 label="Request type *"
                                                 InputLabelProps={{ shrink: true, }}
                                                 {...props}
-                                                onChange={(e)=>{
+                                                onChange={(e)=>
+                                                {
                                                     props.onChange(e.target.value);
                                                     this.forceUpdate();
                                                 }}

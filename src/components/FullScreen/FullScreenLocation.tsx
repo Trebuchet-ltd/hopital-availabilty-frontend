@@ -94,7 +94,7 @@ export class LocationSearchBoxLoc<P extends LocationSearchProps, S extends Locat
     searchData = () => 
     {
         this.setPersistence();
-        const filterQStr = createQueryString(MarkerFilters.getParams())
+        const filterQStr = createQueryString(MarkerFilters.getParams());
         let query = "";
         if (this.state.query) 
         
@@ -102,7 +102,7 @@ export class LocationSearchBoxLoc<P extends LocationSearchProps, S extends Locat
         
         this.props.history.replace({
             pathname: "/search",
-            search: `query=${query}&loc=${this.state.value}&lat=${this.state.lat}&lng=${this.state.lng}` + (!!filterQStr?'&'+createQueryString(MarkerFilters.getParams()):"")
+            search: `query=${query}&loc=${this.state.value}&lat=${this.state.lat}&lng=${this.state.lng}` + (!!filterQStr?"&"+createQueryString(MarkerFilters.getParams()):"")
         }
         );
         /*

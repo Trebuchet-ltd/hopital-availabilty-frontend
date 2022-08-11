@@ -76,6 +76,7 @@ module.exports = (env) => ({
         path: buildFolder,
         publicPath: "/",
         filename: "[name].js",
+        chunkFilename: "chunk-[name].[contenthash].js",
     },
     experiments: {
         topLevelAwait: true

@@ -12,7 +12,7 @@ import Account from "../../images/accn_bw.svg";
 import Addhospaf from "../../images/addhosp_af.svg";
 // import Exploreaf from "../../images/explore_af.svg";
 import Helpaf from "../../images/help_af.svg";
- import Chataf from "../../images/chat_af.svg";
+import Chataf from "../../images/chat_af.svg";
 import Accountaf from "../../images/accnt_af.svg";
 
 
@@ -41,9 +41,9 @@ class BottomNavLoc extends AuthComponent<AuthPropsLoc, BottomNavState>
     getActive() 
     {
         return this.props.location.pathname.includes("/addHospital") ? 1 :
-                this.props.location.pathname.includes("/help") ? 2 :
+            this.props.location.pathname.includes("/help") ? 2 :
                 this.props.location.pathname.includes("/chat") ? 3 :
-                this.props.location.pathname.includes("/profile/") ? 4 : 0; 
+                    this.props.location.pathname.includes("/profile/") ? 4 : 0; 
     }
 
     hashChange = () => 

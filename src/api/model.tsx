@@ -29,47 +29,48 @@ export interface WorkingTime
 }
 
 export const markerCategories = {
-    'E': 'Economy',
-    'N': 'Normal',
-    'S': 'Speacialty',
-    'SS': 'Super Specialty',
-    'U': 'Uncategorized'
+    "E": "Economy",
+    "N": "Normal",
+    "S": "Speacialty",
+    "SS": "Super Specialty",
+    "U": "Uncategorized"
 } as const;
 
 export const markerTypes = {
-    'H': 'Hospital',
-    'P': 'Pharmacy',
-    'C': 'Clinic',
-    'W': 'Wellness Center',
-    'U': 'Uncategorized'
+    "H": "Hospital",
+    "P": "Pharmacy",
+    "C": "Clinic",
+    "W": "Wellness Center",
+    "U": "Uncategorized"
 } as const;
 
 export const markerOwnership = {
-    'Pu': 'Public',
-    'Pr': 'Private',
-    'Co': 'Co-operative',
-    'U': 'Uncategorized'
+    "Pu": "Public",
+    "Pr": "Private",
+    "Co": "Co-operative",
+    "U": "Uncategorized"
 } as const; 
 
 export const markerMedicine = {
-    'Ay': 'Ayurveda', 'Al': 'Allopathy',
-    'Ho': 'Homeopathy'
+    "Ay": "Ayurveda", "Al": "Allopathy",
+    "Ho": "Homeopathy"
 } as const;
 
- const markerfilters = {'financial_rating': ['gte', 'lte', 'exact'],
-                        'oxygen_rating': ['gte', 'lte', 'exact'], 'ventilator_availability': ['gte', 'lte', 'exact'],
-                        'oxygen_availability': ['gte', 'lte', 'exact'], 'icu_availability': ['gte', 'lte', 'exact'],
-                        'avg_cost': ['gte', 'lte', 'exact'],
-                        'care_rating': ['gte', 'lte', 'exact'], 'covid_rating': ['gte', 'lte', 'exact'],
-                        'beds_available': ['gte', 'lte', 'exact'], 'category': ['in'], 'type': ['in'],
-                        'ownership': ['in'], 'medicine': ['in']} as const;
+const markerfilters = {"financial_rating": ["gte", "lte", "exact"],
+    "oxygen_rating": ["gte", "lte", "exact"], "ventilator_availability": ["gte", "lte", "exact"],
+    "oxygen_availability": ["gte", "lte", "exact"], "icu_availability": ["gte", "lte", "exact"],
+    "avg_cost": ["gte", "lte", "exact"],
+    "care_rating": ["gte", "lte", "exact"], "covid_rating": ["gte", "lte", "exact"],
+    "beds_available": ["gte", "lte", "exact"], "category": ["in"], "type": ["in"],
+    "ownership": ["in"], "medicine": ["in"]} as const;
                     
 
-export type TMarkerFilter = TFilterParams<typeof markerfilters,MarkerObject>
+export type TMarkerFilter = TFilterParams<typeof markerfilters, MarkerObject>
 
-const markerFilterChoices: TFilterChoiceList<TMarkerFilter>= {'category__in':markerCategories,'medicine__in':markerMedicine,'type__in':markerTypes,'ownership__in':markerOwnership}
+const markerFilterChoices: TFilterChoiceList<TMarkerFilter>= {"category__in":markerCategories, "medicine__in":markerMedicine, "type__in":markerTypes, "ownership__in":markerOwnership};
 
-export class MarkerObject extends ModelObject {
+export class MarkerObject extends ModelObject 
+{
     lng = "0";
     comment: ReviewObject[] = [];
     oxygen_availability = 0;
@@ -89,12 +90,13 @@ export class MarkerObject extends ModelObject {
     doctors: DoctorObject[] = [];
     about: string | undefined;
     departments: Array<DepartmentObject> = [];
-    type: keyof typeof markerTypes = 'U';
-    category: keyof typeof markerCategories = 'U';
-    ownership: keyof typeof markerOwnership = 'U';
-    medicine: keyof typeof markerMedicine = 'Al';
+    type: keyof typeof markerTypes = "U";
+    category: keyof typeof markerCategories = "U";
+    ownership: keyof typeof markerOwnership = "U";
+    medicine: keyof typeof markerMedicine = "Al";
 
-    constructor(data: ModelData, baseUrl: string) {
+    constructor(data: ModelData, baseUrl: string) 
+    {
 
         super(data, baseUrl);
         this.fields = ["id", "Phone", "size", "financial_rating", "avg_cost", "covid_rating", "beds_available", "care_rating",
@@ -274,7 +276,7 @@ export class DoctorObject extends ModelObject
         super(data, baseUrl);
         this.fields = ["id", "name", "phone_number", "hospital", "department", "user", "working_time",
             "rating", "reviews", "patients", "experience", "specialization", "about", "image", "whatsapp_number",
-            "email", "address", "ima_num", "ranges","schedule"];
+            "email", "address", "ima_num", "ranges", "schedule"];
         this.getData();
     }
 
@@ -387,7 +389,7 @@ export class PatientObject extends ModelObject
     srfid = "";
     bunum = "";
     uid = -1;
-    request_type: "" | undefined;
+    request_type: "M" | "FI" | "O" | "F" | "B" | undefined;
     location: "" | undefined;
     reason: "" | undefined;
     attachment: "" | undefined;
@@ -395,13 +397,14 @@ export class PatientObject extends ModelObject
     ifsc: "" | undefined;
     bank_name: "" | undefined;
     mobile_number: 0 | undefined;
+    account_no= "";
 
     constructor(data: ModelData, baseUrl: string)
     {
         super(data, baseUrl);
         this.fields = ["id", "Name", "age", "gender", "address", "requirement", "symptoms", "symdays", "spo2", "hospitalday", "oxy_bed", "covidresult",
             "hospitalpref", "attendername", "attenderphone", "relation", "srfid", "bunum", "blood", "bedtype", "ct",
-            "ctscore", "gender_name", "bedtype_name", "request_type", "gender", "location", "reason", "attachment", "account_holder", "bank_name", "mobile_number" ];
+            "ctscore", "gender_name", "bedtype_name", "request_type", "gender", "location", "reason", "attachment", "account_holder", "bank_name", "mobile_number", "account_no", "ifsc" ];
         this.getData();
     }
 }
@@ -485,7 +488,8 @@ export class BloodBankObject extends ModelObject
 
 }
 
-export class DoctorScheduleObject extends MarkerObject{
+export class DoctorScheduleObject extends MarkerObject
+{
     date =  "";
     doctor = "";
     id =  -1;
@@ -494,7 +498,7 @@ export class DoctorScheduleObject extends MarkerObject{
     constructor(data: ModelData, baseUrl: string)
     {
         super(data, baseUrl);
-        this.fields = ["id", "date", "slots", "stats","doctor"];
+        this.fields = ["id", "date", "slots", "stats", "doctor"];
         this.getData();
     }
 }

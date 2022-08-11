@@ -52,7 +52,7 @@ export default class DoctorProfile extends React.Component<CardProps, { open: bo
                                     <img
                                         src={starsvg} alt={"star"}/> {this.props.model.rating || 0} ({(this.props.model.reviews || []).length} reviews)
                                 </div>
-                                <div className="bold" style={{marginLeft: "auto", marginRight: "1rem",marginTop: "20px"}}>
+                                <div className="bold" style={{marginLeft: "auto", marginRight: "1rem", marginTop: "20px"}}>
                                     <div>
                                         Available Slot
                                     </div>

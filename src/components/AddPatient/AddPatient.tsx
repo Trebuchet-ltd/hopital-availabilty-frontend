@@ -72,7 +72,8 @@ const Symptoms = ["Fever", "Cough", "Running nose", "Headache", "Nausea / Vomiti
 export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
 {
 
-    constructor(props: AuthPropsLoc) {
+    constructor(props: AuthPropsLoc) 
+    {
         super(props);
         this.state = {
             ...this.state,
@@ -132,23 +133,29 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
     requirements = ["ICU", "Oxygen", "Medicine", "Scan", "General Ward", "Medical Test", "Other"];
 
 
-    form = () => {
-        const handleRequirement = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    form = () => 
+    {
+        const handleRequirement = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => 
+        {
 
             this.setValue("requirement", event);
-            if (event.target.value === "Other") {
+            if (event.target.value === "Other") 
+            {
                 this.setState({ otherLabel: "Enter Your Requirement" });
                 this.setState({ requirementCheck: true });
             }
-            else if (event.target.value === "Medicine") {
+            else if (event.target.value === "Medicine") 
+            {
                 this.setState({ otherLabel: "Enter Medicine Name/Type" });
                 this.setState({ requirementCheck: true });
             }
-            else if (event.target.value === "Scan") {
+            else if (event.target.value === "Scan") 
+            {
                 this.setState({ otherLabel: "Enter Type Of Scan" });
                 this.setState({ requirementCheck: true });
             }
-            else if (event.target.value === "Medical Test") {
+            else if (event.target.value === "Medical Test") 
+            {
                 this.setState({ otherLabel: "Enter Type Of Test" });
                 this.setState({ requirementCheck: true });
             }
@@ -338,7 +345,8 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
             return (<div className="m-4">
                 <div className=" d-flex justify-content-between align-items-centre">
                     <p className="mainhead">Is there an attender</p>
-                    <Checkbox className="pb-3" checked={this.state.avail_attender} onClick={() => {
+                    <Checkbox className="pb-3" checked={this.state.avail_attender} onClick={() => 
+                    {
                         this.setState({ avail_attender: !this.state.avail_attender });      //TODO checkbox alignment
                     }} size="small" />
                 </div>
@@ -375,7 +383,8 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
                 <div className="m-4">
                     <div className=" d-flex justify-content-between align-items-centre">
                         <p className="mainhead">Was the patient taken to a hospital?</p>
-                        <Checkbox checked={this.state.avail_hospital} onClick={() => {
+                        <Checkbox checked={this.state.avail_hospital} onClick={() => 
+                        {
                             this.setState({ avail_hospital: !this.state.avail_hospital });  //TODO checkbox alignment
                         }} size="small" />
                     </div>
@@ -406,7 +415,8 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
 
 
     };
-    setValue = (name: string, event: string | boolean | React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setValue = (name: string, event: string | boolean | React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => 
+    {
         let value;
         if (typeof event !== "boolean" && typeof event !== "string")
 
@@ -424,7 +434,8 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
     };
 
 
-    handleNext = () => {
+    handleNext = () => 
+    {
         if (this.tabs.length - 1)
 
             this.setState({
@@ -434,13 +445,15 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
 
     };
 
-    handleBack = () => {
+    handleBack = () => 
+    {
         this.setState({
             activeStep: this.state.activeStep - 1
         });
     };
 
-    savePatient = async () => {
+    savePatient = async () => 
+    {
         if (this.state.requirement === "Other" || "Medicine" || "Scan" || "Medical Test")
 
             await this.setState({
@@ -455,12 +468,14 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
 
         if (this.state.Name && this.state.gender && this.state.symptoms)
             Patient.create({ ...toSend, })
-                .then(() => {
+                .then(() => 
+                {
                     this.props.history.push("/");
                     toast.success("Successfully added your details", {
                         position: "bottom-center"
                     });
-                }).catch((error) => {
+                }).catch((error) => 
+                {
                     toast.error(error.details, {
                         position: "bottom-center"
                     });
@@ -472,12 +487,15 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
     };
 
 
-    render() {
-        if (!this.state.auth) {
+    render() 
+    {
+        if (!this.state.auth) 
+        {
             this.performAuth();
             return (<></>);
         }
-        else {
+        else 
+        {
             console.log(this.state);
             return (
                 <div className="d-flex flex-column vh-100">
@@ -505,10 +523,10 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
                                             <img src={lineicon} alt='' /> : null
                                     }
 
-                                        <Chip size='small' className='' label={label} onClick={() => this.setState({
-                                            activeStep: index
-                                        })}
-                                            sx={this.styles[this.state.activeStep === index ? 0 : 1]} />
+                                    <Chip size='small' className='' label={label} onClick={() => this.setState({
+                                        activeStep: index
+                                    })}
+                                    sx={this.styles[this.state.activeStep === index ? 0 : 1]} />
                                     </div>
                                 ))
                             }
@@ -569,4 +587,6 @@ export class AddPatient extends AuthComponent<AuthPropsLoc, AddPatientState>
     }
 }
 
-export const Addpatient = withRouter(AddPatient);
+const Addpatient = withRouter(AddPatient!);
+
+export default Addpatient;
