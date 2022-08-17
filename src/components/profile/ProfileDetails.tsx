@@ -17,6 +17,7 @@ import reviewsvg from "../../images/friendshipaccnt.svg";
 import Bloodgrp from "../../images/bloodgroup.svg";
 import CovidPos from "../../images/corpos.svg";
 import CovidNeg from "../../images/corneg.svg";
+import request from "../../images/helphand.svg";
 import Button from "@mui/material/Button";
 
 import Maleicon from "../../images/male.svg";
@@ -172,47 +173,7 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
     getTab = () =>
         (this.state.tab === 0 ?
             <div className="">
-                {/*<Container>*/}
-                {/*    <Link to="/addRequest">*/}
-                {/*        <BigBlueButton text="+ Add New Request"/>*/}
-                {/*    </Link>*/}
-                {/*</Container>*/}
-                {/*<Container >*/}
-                {/*    {this.state.requests ? (this.state.requests.map((obj, key) => (*/}
-                {/*        <div key={key}>*/}
 
-                {/*            <div className="mx-1">*/}
-                {/*                <div className="maincard d-flex flex-row justify-content-between ">*/}
-
-                {/*                    <div className=" lefttxt ">*/}
-                {/*                        <h1 className="title m-0">{obj.Name}{this.getgender(obj.gender)}</h1>*/}
-                {/*                        <div className="subtitle">*/}
-                {/*                            <div>Symptoms:{obj.symptoms}</div>*/}
-                {/*                            <div>Since:{obj.symdays}</div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                    <div className=" subtitle pr-4 pt-4 ">*/}
-                {/*                        <div className="mt-1">{obj.blood} <img src={Bloodgrp} alt=""/></div>*/}
-                {/*                        <div className="mt-1">Covid:{obj.covidresult ? (*/}
-                {/*                            <img src={CovidPos} alt=""/>) : (*/}
-                {/*                            <img src={CovidNeg} alt=""/>)}</div>*/}
-                {/*                        <div className="mt-1">CT score:{obj.ctscore}</div>*/}
-                {/*                        <Button sx={{*/}
-                {/*                            borderRadius: "10px",*/}
-                {/*                            marginBottom: "1rem",*/}
-                {/*                            textTransform: "none",*/}
-                {/*                            paddingX: "1.25rem",*/}
-                {/*                            paddingY: ".25rem", marginTop: ".5rem"*/}
-                {/*                        }} className="helpbutn"*/}
-                {/*                        variant="contained">Edit</Button>*/}
-                {/*                    </div>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    ))) : null}*/}
-
-
-                {/*</Container>*/}
 
 
             </div> :
@@ -247,7 +208,47 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
                         </Container>))}
                 </div> :
                 <div>
+                    <Container>
+                        <Link to="/addRequest">
+                            <BigBlueButton text="+ Add New Request"/>
+                        </Link>
+                    </Container>
+                    <Container >
+                        {this.state.requests ? (this.state.requests.map((obj, key) => (
+                            <div key={key}>
 
+                                <div className="mx-1">
+                                    <div className="maincard d-flex flex-row justify-content-between ">
+
+                                        <div className=" lefttxt ">
+                                            <h1 className="title m-0">{obj.Name}{this.getgender(obj.gender)}</h1>
+                                            <div className="subtitle">
+                                                <div>Symptoms:{obj.symptoms}</div>
+                                                <div>Since:{obj.symdays}</div>
+                                            </div>
+                                        </div>
+                                        <div className=" subtitle pr-4 pt-4 ">
+                                            <div className="mt-1">{obj.blood} <img src={Bloodgrp} alt=""/></div>
+                                            <div className="mt-1">Covid:{obj.covidresult ? (
+                                                <img src={CovidPos} alt=""/>) : (
+                                                <img src={CovidNeg} alt=""/>)}</div>
+                                            <div className="mt-1">CT score:{obj.ctscore}</div>
+                                            <Button sx={{
+                                                borderRadius: "10px",
+                                                marginBottom: "1rem",
+                                                textTransform: "none",
+                                                paddingX: "1.25rem",
+                                                paddingY: ".25rem", marginTop: ".5rem"
+                                            }} className="helpbutn"
+                                            variant="contained">Edit</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))) : null}
+
+
+                    </Container>
                 </div>
         );
 
@@ -376,8 +377,8 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
 
                                 <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
                                     onClick={() => this.setState({ tab: 2 })}>
-                                    <img src={offers} alt={"layout svg"} />
-                                    <p className="m-0"><b>{"0"}</b><br />Offers</p>
+                                    <img src={request} alt={"layout svg"} />
+                                    <p className="m-0"><b>{"0"}</b><br />Requests</p>
                                 </button>
 
 

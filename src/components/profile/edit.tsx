@@ -154,6 +154,7 @@ class Edit extends AuthComponent<AuthPropsLoc, EditState>
                     first_name: this.state.user?.first_name,
                     last_name: this.state.user?.last_name,
                     phone_number: this.state.user?.tokens.phone_number??"",
+                    language: this.state.user?.tokens.language??"",
                     address: this.state.user?.tokens.address,
                     age: this.state.user?.tokens.age,
                     gender: this.state.user?.tokens.gender
@@ -203,7 +204,7 @@ class Edit extends AuthComponent<AuthPropsLoc, EditState>
                                             </MUIController>
                                         </div>
                                         <p className="txthead mt-3">LAST NAME</p>
-                                        <div className="d-flex justify-content-between flex-row align-items-center">                                  <div className="d-flex justify-content-between flex-row align-items-center">
+                                        <div className="d-flex justify-content-between flex-row align-items-center"></div>                                 <div className="d-flex justify-content-between flex-row align-items-center">
                                             <MUIController name='last_name' control={control as any}>
                                                 {
                                                     (props) => <TextField
@@ -280,75 +281,135 @@ class Edit extends AuthComponent<AuthPropsLoc, EditState>
                                                 }
                                             </MUIController>
                                         </div>
-                                        <div className="d-flex justify-content-between flex-row align-items-center"></div>
-                                        <MUIController name='gender' control={control as any}>
-                                            {
-                                                (props) => <TextField sx={{ width: 212 }}
-                                                    className="mt-4"
-                                                    select
-                                                    variant="outlined"
-                                                    label="Gender *"
-                                                    InputLabelProps={{ shrink: true, }}
-                                                    {...props}
-                                                >
-                                                    <MenuItem value={"M"}>Male</MenuItem>
-                                                    <MenuItem value={"F"}>Female</MenuItem>
-                                                    <MenuItem value={"NB"}>Non Binary</MenuItem>
-                                                    <MenuItem value={"NP"}>Prefer Not to Say</MenuItem>
-                                                </TextField>
-                                            }
-                                        </MUIController>
-                                        </div>
-                                        <MUIController name='age' control={control as any}>
-                                            {
-                                                (props) => <TextField sx={{ width: 90 }} className="mt-4" variant="outlined"
-                                                    label="Age *"
-                                                    InputLabelProps={{ shrink: true, }}
-                                                    {...props}
-                                                />
-                                            }
-                                        </MUIController>
-                                        <MUIController name='address' control={control as any}>
-                                            {
-                                                (props) => <TextField className="mt-4" fullWidth variant="outlined"
-                                                    label="Location *" InputLabelProps={{ shrink: true, }}
-                                                    {...props}
-                                                />
-                                            }
-                                        </MUIController>
-                                        <div className="d-flex justify-content-between flex-row align-items-center">
-                                            <p className="txthead mt-3">LANGUAGES</p>
-                                            <div className="d-flex justify-content-between flex-row align-items-center">
-                                                <Autocomplete
-                                                    multiple
-                                                    fullWidth
-                                                    autoSelect
-                                                    defaultValue={user.tokens.language as any}
-                                                    options={this.state.languages}
-                                                    getOptionLabel={(language) => language.name}
-                                                    onChange={(_, language) => this.setState({
-                                                        ...this.state,
-                                                        user: {
-                                                            ...user,
-                                                            tokens: { ...user.tokens, language: language }
-                                                        }
-                                                    })}
-                                                    renderInput={(params) => (
-                                                        <TextField
-                                                            {...params}
-                                                            variant="standard"
-                                                            fullWidth
-                                                            onChange={(event) => this.editSearchTerm(event.target.value)}
-                                                        />)}
-                                                />
-                                            </div>
-                                        </div>
+                                        {/*<p className="txthead mt-3">LANGUAGES</p>*/}
+                                        {/*<div className="d-flex justify-content-between flex-row align-items-center">*/}
+                                        {/*    <MUIController name="languages" control={control as any}>*/}
+                                        {/*        {*/}
+                                        {/*            (props) => <Autocomplete*/}
+                                        {/*                multiple*/}
+                                        {/*                fullWidth*/}
+                                        {/*                autoSelect*/}
+                                        {/*                defaultValue={user.tokens.language as any}*/}
+                                        {/*                options={this.state.languages}*/}
+                                        {/*                getOptionLabel={(language) => language.name}*/}
+                                        {/*                onChange={(_, language) => this.setState({*/}
+                                        {/*                    ...this.state,*/}
+                                        {/*                    user: {*/}
+                                        {/*                        ...user,*/}
+                                        {/*                        tokens: { ...user.tokens, language: language }*/}
+                                        {/*                    }*/}
+                                        {/*                })}*/}
+                                        {/*                renderInput={(params) => (*/}
+                                        {/*                    <TextField*/}
+                                        {/*                        {...params}*/}
+                                        {/*                        variant="standard"*/}
+                                        {/*                        fullWidth*/}
+                                        {/*                        InputProps={{*/}
+                                        {/*                            endAdornment: (*/}
+                                        {/*                                <button onClick={() =>*/}
+                                        {/*                                {*/}
+                                        {/*                                    this.setState({*/}
+                                        {/*                                        ...this.state,*/}
+                                        {/*                                        user: {*/}
+                                        {/*                                            ...user,*/}
+                                        {/*                                            tokens: { ...user.tokens, phone_number: "" }*/}
+                                        {/*                                        }*/}
+                                        {/*                                    });*/}
+                                        {/*                                }}>*/}
+                                        {/*                                    <HighlightOffIcon />*/}
+                                        {/*                                </button>*/}
+                                        {/*                            ),*/}
+                                        {/*                        }}*/}
+                                        {/*                        onChange={(event) => this.editSearchTerm(event.target.value)}*/}
+                                        {/*                    />)}*/}
+                                        {/*            />*/}
+                                        {/*        }*/}
+                                        {/*    </MUIController>*/}
+                                        {/*</div>*/}
+                                        {/*<Autocomplete*/}
+                                        {/*    multiple*/}
+                                        {/*    fullWidth*/}
+                                        {/*    limitTags={2}*/}
+                                        {/*    autoSelect*/}
+                                        {/*    defaultValue={user.tokens.language as any}*/}
+                                        {/*    options={this.state.languages}*/}
+                                        {/*    getOptionLabel={(language) => language.name}*/}
+                                        {/*    onChange={(_, language) => this.setState({*/}
+                                        {/*        ...this.state,*/}
+                                        {/*        user: {*/}
+                                        {/*            ...user,*/}
+                                        {/*            tokens: { ...user.tokens, language: language }*/}
+                                        {/*        }*/}
+                                        {/*    })}*/}
+                                        {/*    renderInput={(params) => (*/}
+                                        {/*        <TextField*/}
+                                        {/*            {...params}*/}
+                                        {/*            variant="standard"*/}
+                                        {/*            fullWidth*/}
+                                        {/*            onChange={(event) => this.editSearchTerm(event.target.value)}*/}
+                                        {/*            InputProps={{*/}
+                                        {/*                endAdornment: (*/}
+                                        {/*                    <button onClick={() =>*/}
+                                        {/*                    {*/}
+                                        {/*                        this.setState({*/}
+                                        {/*                            ...this.state,*/}
+                                        {/*                            user: {*/}
+                                        {/*                                ...user,*/}
+                                        {/*                                tokens: { ...user.tokens, phone_number: "" }*/}
+                                        {/*                            }*/}
+                                        {/*                        });*/}
+                                        {/*                    }}>*/}
+                                        {/*                        <HighlightOffIcon />*/}
+                                        {/*                    </button>*/}
+                                        {/*                ),*/}
+                                        {/*            }}*/}
+                                        {/*        />)}*/}
+                                        {/*/>*/}
+                                        {/*<div className="d-flex justify-content-between flex-row align-items-center">*/}
+                                        {/*    <MUIController name='gender' control={control as any}>*/}
+                                        {/*        {*/}
+                                        {/*            (props) => <TextField sx={{ width: 212 }}*/}
+                                        {/*                className="mt-4"*/}
+                                        {/*                select*/}
+                                        {/*                variant="outlined"*/}
+                                        {/*                label="Gender *"*/}
+                                        {/*                InputLabelProps={{ shrink: true, }}*/}
+                                        {/*                {...props}*/}
+                                        {/*            >*/}
+                                        {/*                <MenuItem value={"M"}>Male</MenuItem>*/}
+                                        {/*                <MenuItem value={"F"}>Female</MenuItem>*/}
+                                        {/*                <MenuItem value={"NB"}>Non Binary</MenuItem>*/}
+                                        {/*                <MenuItem value={"NP"}>Prefer Not to Say</MenuItem>*/}
+                                        {/*            </TextField>*/}
+                                        {/*        }*/}
+                                        {/*    </MUIController>*/}
+                                        {/*</div>*/}
+                                        {/*<div className="d-flex justify-content-between flex-row align-items-center">*/}
+                                        {/*    <MUIController name='age' control={control as any}>*/}
+                                        {/*        {*/}
+                                        {/*            (props) => <TextField sx={{ width: 90 }} className="mt-4" variant="outlined"*/}
+                                        {/*                label="Age *"*/}
+                                        {/*                InputLabelProps={{ shrink: true, }}*/}
+                                        {/*                {...props}*/}
+                                        {/*            />*/}
+                                        {/*        }*/}
+                                        {/*    </MUIController>*/}
+                                        {/*</div>*/}
+                                        {/*<div className="d-flex justify-content-between flex-row align-items-center">*/}
+                                        {/*    <MUIController name='address' control={control as any}>*/}
+                                        {/*        {*/}
+                                        {/*            (props) => <TextField className="mt-4" fullWidth variant="outlined"*/}
+                                        {/*                label="Location *" InputLabelProps={{ shrink: true, }}*/}
+                                        {/*                {...props}*/}
+                                        {/*            />*/}
+                                        {/*        }*/}
+                                        {/*    </MUIController>*/}
+                                        {/*</div>*/}
                                         <div className="bottom-sec">
                                             <hr className="linestyle" />
                                             <div className="endtxt pb-4">We appreciate your kindness</div>
                                         </div>
-                                    </Container>
-                                }
+                                    </Container>}
                             </div>
                         );
                     }
