@@ -254,6 +254,7 @@ export default class Model
     get = async (id: number | string, kwargs: Record<string, unknown> = {}, auth = false) =>
     {
         let headers = {};
+        console.log(id,auth, this.modelClass)
 
         if (auth)
         

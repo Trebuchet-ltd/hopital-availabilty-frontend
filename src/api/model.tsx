@@ -1,13 +1,14 @@
-import { number, string } from "prop-types";
+import {number, string} from "prop-types";
 import Model, {baseUrl, filePost, ModelData, ModelObject, ModelFilterSet} from "./api";
 import {getAuth} from "./auth";
-import { TFilterChoiceList, TFilterParams } from "./types";
+import {TFilterChoiceList, TFilterParams} from "./types";
 
-export interface Slots {
-        id: number,
-        start: string,
-        end: string,
-        booked: boolean,
+export interface Slots
+{
+    id: number,
+    start: string,
+    end: string,
+    booked: boolean,
 }
 
 interface ImageObject
@@ -49,27 +50,34 @@ export const markerOwnership = {
     "Pr": "Private",
     "Co": "Co-operative",
     "U": "Uncategorized"
-} as const; 
+} as const;
 
 export const markerMedicine = {
     "Ay": "Ayurveda", "Al": "Allopathy",
     "Ho": "Homeopathy"
 } as const;
 
-const markerfilters = {"financial_rating": ["gte", "lte", "exact"],
+const markerfilters = {
+    "financial_rating": ["gte", "lte", "exact"],
     "oxygen_rating": ["gte", "lte", "exact"], "ventilator_availability": ["gte", "lte", "exact"],
     "oxygen_availability": ["gte", "lte", "exact"], "icu_availability": ["gte", "lte", "exact"],
     "avg_cost": ["gte", "lte", "exact"],
     "care_rating": ["gte", "lte", "exact"], "covid_rating": ["gte", "lte", "exact"],
     "beds_available": ["gte", "lte", "exact"], "category": ["in"], "type": ["in"],
-    "ownership": ["in"], "medicine": ["in"]} as const;
-                    
+    "ownership": ["in"], "medicine": ["in"]
+} as const;
+
 
 export type TMarkerFilter = TFilterParams<typeof markerfilters, MarkerObject>
 
-const markerFilterChoices: TFilterChoiceList<TMarkerFilter>= {"category__in":markerCategories, "medicine__in":markerMedicine, "type__in":markerTypes, "ownership__in":markerOwnership};
+const markerFilterChoices: TFilterChoiceList<TMarkerFilter> = {
+    "category__in": markerCategories,
+    "medicine__in": markerMedicine,
+    "type__in": markerTypes,
+    "ownership__in": markerOwnership
+};
 
-export class MarkerObject extends ModelObject 
+export class MarkerObject extends ModelObject
 {
     lng = "0";
     comment: ReviewObject[] = [];
@@ -95,7 +103,7 @@ export class MarkerObject extends ModelObject
     ownership: keyof typeof markerOwnership = "U";
     medicine: keyof typeof markerMedicine = "Al";
 
-    constructor(data: ModelData, baseUrl: string) 
+    constructor(data: ModelData, baseUrl: string)
     {
 
         super(data, baseUrl);
@@ -232,10 +240,10 @@ export class DepartmentObject extends ModelObject
 export class UserSearchObject extends ModelObject
 {
     id = -1;
-    first_name= "";
-    last_name="";
-    private_token ="";
-    image ="";
+    first_name = "";
+    last_name = "";
+    private_token = "";
+    image = "";
 
 
     constructor(data: ModelData, baseUrl: string)
@@ -397,17 +405,133 @@ export class PatientObject extends ModelObject
     ifsc: "" | undefined;
     bank_name: "" | undefined;
     mobile_number: 0 | undefined;
-    account_no= "";
+    account_no = "";
 
     constructor(data: ModelData, baseUrl: string)
     {
         super(data, baseUrl);
         this.fields = ["id", "Name", "age", "gender", "address", "requirement", "symptoms", "symdays", "spo2", "hospitalday", "oxy_bed", "covidresult",
             "hospitalpref", "attendername", "attenderphone", "relation", "srfid", "bunum", "blood", "bedtype", "ct",
-            "ctscore", "gender_name", "bedtype_name", "request_type", "gender", "location", "reason", "attachment", "account_holder", "bank_name", "mobile_number", "account_no", "ifsc" ];
+            "ctscore", "gender_name", "bedtype_name", "request_type", "gender", "location", "reason", "attachment", "account_holder", "bank_name", "mobile_number", "account_no", "ifsc"];
         this.getData();
     }
 }
+
+export class HelpRequestObject extends ModelObject
+{
+    Name = "";
+    age = 0;
+    gender = "";
+    address = "";
+    gender_name = "";
+    request_type: "M" | "FI" | "O" | "F" | "B" | undefined;
+    reason = "" ;
+    attachment = "" ;
+    mobile_number = "";
+    user = "";
+    public = "";
+
+    constructor(data: ModelData, baseUrl: string)
+    {
+        super(data, baseUrl);
+        this.fields = [
+            "request_type",
+            "Name",
+            "age",
+            "gender",
+            "address",
+            "mobile_number",
+            "user",
+            "helped_by",
+            "reason",
+            "public",
+            "attachment"
+        ];
+        this.getData();
+    }
+}
+
+export class HelpRequestMedicalObject extends HelpRequestObject
+{
+
+    symptoms = "";
+    symdays = "";
+    spo2 = "";
+    oxy_bed = "";
+    bedtype = "";
+    blood = "";
+    ct = "";
+    covidresult = "";
+    ctscore = "";
+    attendername = "";
+    attenderphone = "";
+    relation = "";
+    hospitalpref = "";
+    hospitalprefid = "";
+    srfid = "";
+    bunum = "";
+    requirement = "";
+
+    constructor(data: ModelData, baseUrl: string)
+    {
+        super(data, baseUrl);
+        this.fields = [
+            "symptoms",
+            "symdays",
+            "spo2",
+            "oxy_bed",
+            "bedtype",
+            "blood",
+            "ct",
+            "covidresult",
+            "ctscore",
+            "attendername",
+            "attenderphone",
+            "relation",
+            "hospitalpref",
+            "hospitalprefid",
+            "srfid",
+            "bunum",
+            "requirement",
+        ];
+        this.getData();
+    }
+}
+
+export class HelpRequestFinancialObject extends HelpRequestObject
+{
+    account_holder = "";
+    account_no = "";
+    ifsc = "";
+    bank_name = "";
+    constructor(data: ModelData, baseUrl: string)
+    {
+        super(data, baseUrl);
+        this.fields = [
+            "account_holder",
+            "account_no",
+            "ifsc",
+            "bank_name"
+        ];
+        this.getData();
+    }
+}
+
+export class HelpRequestBloodObject extends HelpRequestObject
+{
+    blood = "";
+
+    constructor(data: ModelData, baseUrl: string)
+    {
+        super(data, baseUrl);
+        this.fields = [
+            "blood"
+        ];
+        this.getData();
+    }
+}
+
+
 
 export class susObject extends ModelObject
 {
@@ -415,7 +539,10 @@ export class susObject extends ModelObject
     constructor(data: ModelData, baseUrl: string)
     {
         super(data, baseUrl);
-        this.fields = ["id", "marker", "comment", "created_by", "datef"];
+        this.fields = [
+
+            "id", "marker", "comment", "created_by", "datef"
+        ];
         this.getData();
     }
 }
@@ -490,11 +617,12 @@ export class BloodBankObject extends ModelObject
 
 export class DoctorScheduleObject extends MarkerObject
 {
-    date =  "";
+    date = "";
     doctor = "";
-    id =  -1;
-    slots:Slots[] = [];
-    stats = {available:-1, total: -1};
+    id = -1;
+    slots: Slots[] = [];
+    stats = {available: -1, total: -1};
+
     constructor(data: ModelData, baseUrl: string)
     {
         super(data, baseUrl);
@@ -512,6 +640,10 @@ export const Department = new Model(baseUrl + "/internals/departments/", Departm
 export const Marker = new Model(baseUrl + "/api/marker/", MarkerObject);
 export const Doctor = new Model(baseUrl + "/internals/doctors/", DoctorObject);
 export const Patient = new Model(baseUrl + "/api/patient/", PatientObject);
+export const HelpRequest = new Model(baseUrl + "/api/patient/", HelpRequestObject);
+export const HelpRequestMedical = new Model(baseUrl + "/api/patient/", HelpRequestMedicalObject);
+export const HelpRequestFinancial = new Model(baseUrl + "/api/patient/", HelpRequestFinancialObject);
+export const HelpRequestBlood = new Model(baseUrl + "/api/patient/", HelpRequestBloodObject);
 export const DepartmentName = new Model(baseUrl + "/internals/department_names/", DepartmentNameObject);
 export const Nurse = new Model(baseUrl + "/internals/nurses/", NurseObject);
 export const Language = new Model(baseUrl + "/api/language/", LanguageObject);
@@ -533,4 +665,9 @@ export type ModelRegistry =
     | typeof AmbulanceObject
     | typeof BloodBankObject
     | typeof UserSearchObject
+    | typeof HelpRequestObject
+    | typeof HelpRequestBloodObject
+    | typeof HelpRequestFinancialObject
+    | typeof HelpRequestMedicalObject
+
 

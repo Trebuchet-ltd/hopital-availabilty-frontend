@@ -138,22 +138,9 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
                                                     <div>Description :{obj.reason}</div>
                                                 </div>
                                             </div>
-                                            <div className="lefttxt ">
-                                                {
-                                                    obj.request_type === "M" && <div className="subtitle">
-                                                        <div>Symptoms:{obj.symptoms}</div>
-                                                        <div>Since:{obj.symdays}</div>
 
-                                                    </div>
-                                                }
-                                            </div>
                                             <div className=" subtitle  pt-4 ">
-                                                {
 
-                                                    obj.request_type === "B" && <div className="mt-1">
-                                                        <div>Blood group:{obj.blood}</div>
-                                                    </div>
-                                                }
                                                 <Button
                                                     //   onClick={() => this.givehelp(obj)}
                                                     onClick={() =>
