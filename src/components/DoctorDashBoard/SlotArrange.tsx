@@ -33,6 +33,9 @@ interface State {
   openModal:boolean;
   date:Date;
   loading:boolean;
+  schedule:Partial<{
+      [k:number]:{start: string, end: string}[]
+  }>
 }
 
 type AppProps = RouteComponentProps;
@@ -49,12 +52,19 @@ class SlotArrange extends Component<AppProps, State>
         openModal:true,
         date:new Date(),
         loading:false,
+        schedule:{}
     };
 
     setClickIndex(el: number)
     {
         this.setState({ clickIndex: el });
     }
+
+
+    onScheduleChange= (schedule: {start: string, end: string}[], i: number)=>{
+
+    }
+
 
     handleCalenderChange = (val:any):void =>
     {
@@ -140,12 +150,9 @@ class SlotArrange extends Component<AppProps, State>
                 <StickyHead title="set Weekly Schedule" onClick={() => console.log("submit")} goBack={() => this.props.history.goBack()} />
                 <Container className="slot_body">
                     {/* <Modal onClose={() =>console.log("close")}> */}
-                    {DAYS.map((el, index) =>
-                    {
-                        return (
-                            <CheckDay key={index} index={index} el={el} setClickIndex={() => this.setClickIndex(index)} clickIndex={this.state.clickIndex} />
-                        );
-                    })}
+                    {DAYS.map((el, index) =>(
+                        <CheckDay key={index} day={index} onChange={(sch)=>onScheduleChange(sch,index)}/>
+                    ))}
                     <div className="btn-add">
                         <Button variant="outlined" size="small" onClick={()=> this.setState({slote:!this.state.slote})} >
                             <div className="btn-cont">

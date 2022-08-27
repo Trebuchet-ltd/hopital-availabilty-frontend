@@ -15,6 +15,7 @@ export default function TimePicker({ lab, data }: prop)
 
     const handleChange = (event: SelectChangeEvent) => 
     {
+        console.log(event);
         setAge(event.target.value as string);
     };
 
@@ -28,10 +29,8 @@ export default function TimePicker({ lab, data }: prop)
                 label={lab}
                 onChange={handleChange}
             >
-                {data.map((item) => (
-                    <>
-                        <MenuItem value={item}>{item}</MenuItem>
-                    </>
+                {data.map((item, i) => (
+                    <MenuItem key={i} value={item}>{item}</MenuItem>
                 ))}
             </Select>
         </FormControl>
