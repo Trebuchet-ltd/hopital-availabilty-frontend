@@ -20,7 +20,7 @@ import { format } from "date-fns";
 import Loader from "react-loader-spinner";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const DAYS: string[] = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+export const DAYS: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const pickTime: string[] = ["9.00", "10.00", "11.00", "12.00", "1.00", "2.00", "3.00", "4.00"];
 
 interface State {
@@ -88,6 +88,8 @@ class SlotArrange extends Component<AppProps, State>
     }
 
     dummeyTime = ["9.00-10.00", "11.00-12.00"];
+    
+    
 
 
     render() 
@@ -115,6 +117,7 @@ class SlotArrange extends Component<AppProps, State>
              </Container>
          </>
                         }
+                        
                         {!this.state.loading && 
           <>
               <Container className='mt-5 pt-5 text-center'>
@@ -133,7 +136,9 @@ class SlotArrange extends Component<AppProps, State>
 
               </Container>
           </>
+         
                         }
+                        
                     </div>
                 </Modal>
 
