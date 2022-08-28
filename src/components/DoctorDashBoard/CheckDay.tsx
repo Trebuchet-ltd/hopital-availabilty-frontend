@@ -19,15 +19,23 @@ interface Day
 const schema = yup.object({
     schedule: yup.array().of(yup.object({
         start: yup.date().required(),
-        end: yup.date().required().min(yup.ref("start"))
-    }))
+        end: yup.date().required()
+    }).test(
+        "start-end-check",
+        "End cannot be less than start.",
+        (value, context) => !!value.start && !!value.end && value.start < value.end,
+    )
+    )
 });
 
 export const DAYS: string[] = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
 const CheckDay = ({onChange, day}: Day) =>
 {
-    const {control, register, getValues, handleSubmit} = useForm({resolver: yupResolver(schema), mode: "onBlur"});
+    const {control, register, getValues, handleSubmit, formState: {errors}} = useForm({
+        resolver: yupResolver(schema),
+        mode: "onBlur"
+    });
     const {fields, append, prepend, remove, swap, move, insert} = useFieldArray({
         control, // control props comes from useForm (optional: if you are using FormContext)
         name: "schedule", // unique name for your Field Array
@@ -40,7 +48,7 @@ const CheckDay = ({onChange, day}: Day) =>
         setChecked(event.target.checked);
     };
 
-    console.log(getValues());
+    console.log(getValues(), errors);
 
 
     return (
@@ -56,7 +64,7 @@ const CheckDay = ({onChange, day}: Day) =>
                     start: new Date("2014-08-18T21:11:54"),
                     end: new Date("2014-08-18T21:11:54")
                 }])}
-                        disabled={!checked}
+                disabled={!checked}
                 >add
                 </button>
             </div>
@@ -69,7 +77,9 @@ const CheckDay = ({onChange, day}: Day) =>
                                 control={control}
                                 rules={{required: true}}
                                 render={({field}) => <TimePicker
-                                    renderInput={(params) => <TextField {...params} />}
+                                    renderInput={(params) => <TextField {...params}
+                                        helperText={errors.schedule?.[i]?.message}
+                                        error={!!errors.schedule?.[i]}/>}
                                     {...field}
                                     // shouldDisableTime={(timeValue, clockType) =>
                                     // {
@@ -89,7 +99,9 @@ const CheckDay = ({onChange, day}: Day) =>
                                 control={control}
                                 rules={{required: true}}
                                 render={({field}) => <TimePicker
-                                    renderInput={(params) => <TextField {...params} />}
+                                    renderInput={(params) => <TextField {...params}
+                                        helperText={errors.schedule?.[i]?.message}
+                                        error={!!errors.schedule?.[i]}/>}
                                     {...field}
                                     // shouldDisableTime={(timeValue, clockType) =>
                                     // {
@@ -109,6 +121,7 @@ const CheckDay = ({onChange, day}: Day) =>
 
                     ))}
                 </LocalizationProvider>
+                <button onClick={onSubmit}>asdasd</button>
             </div>
 
 
