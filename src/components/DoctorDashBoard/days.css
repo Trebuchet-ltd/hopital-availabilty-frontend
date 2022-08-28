@@ -1,16 +1,18 @@
 .box{
     min-height:40px;
     width: 100%;
-    border:1px solid rgba(128, 128, 128, 0.183);
+    border:1px solid rgba(231, 229, 229, 0.772);
     margin-bottom: 8px;
-    background-color:rgba(217, 217, 217, 0.64);
+    background-color:rgba(244, 244, 244, 0.864);;
+    box-shadow:0px 0px 1px black;
 }
 .check_date{
     display:flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction:column;
+    justify-content: left;
     /*new change*/
     padding:0 10px;
+    margin-top: 20px;
 }
 h5{
     font-size:18px;

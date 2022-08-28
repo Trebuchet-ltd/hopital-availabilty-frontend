@@ -63,13 +63,15 @@ const CheckDay = ({el, index, setClickIndex, clickIndex}:Day,)=>
     return (
         <div className="box" key={index}>
             <div className="check_date" >
+                <div style={{display:'inline',position:'absolute',left:'5%'}}>
             <Checkbox
                     checked={checked}
                     onChange={handleChecked}
                     inputProps={{ "aria-label": "controlled" }}
                 />
                
-                <h5 style={{color:"black",display:'inline-block'}}>{el}</h5>
+                <h5 style={{color:"black",display:'inline'}}>{el}</h5>
+                </div>
               <div style={{ width: '100%'}} key={index}>
                 <button style={{float: 'right'}}  onClick={()=>console.log('copy slot time')
                 }><ContentCopyIcon/></button>
@@ -92,7 +94,7 @@ const CheckDay = ({el, index, setClickIndex, clickIndex}:Day,)=>
                 return(
                     <div key={value} style={{display:'flex',alignItems:'left'}} >
                         <div style={{display:'flex'}}>
-                  <TimePicker  lab="From"  data={pickTime}/>-
+                  <TimePicker  lab="From"  data={pickTime}/>
                   <TimePicker  lab="To"  data={pickTime}/>
                   <button style={{float: 'right'}} onClick={()=>deleteSlot(value)} ><DeleteOutline fontSize="large"/></button>
                   
@@ -111,7 +113,7 @@ const CheckDay = ({el, index, setClickIndex, clickIndex}:Day,)=>
               </div>
          
               :
-              <h5 style={{textAlign:'center'}}>{msg}</h5>
+              <h5 style={{textAlign:'center',marginTop: '20px'}}>{msg}</h5>
             }
         </div>
     );
