@@ -104,10 +104,12 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
 
                             this.setState({show_search: !this.state.show_search});
                         }}>
+                            <div style={{backgroundColor:'#ebebeb',padding:'3px 5px',borderRadius:'10px'}}>
                             <IconButton>
                                 <SearchIcon/>
                             </IconButton>
-                            Search hospitals
+                            Search Hospitals
+                            </div>
                         </button>
                         <Badge onClick={() =>
                         {
@@ -147,6 +149,7 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
                 />
 
                 {showSearchBar &&
+                
                 <CSSTransition classNames="location-screen" in={this.state.show_search} timeout={300}
                     unmountOnExit>
                     <FullScreenSearch close={() =>
@@ -159,6 +162,7 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
                         this.setState({show_search: false});
                     }}/>
                 </CSSTransition>
+                
                 }
             </AppBar>
 
