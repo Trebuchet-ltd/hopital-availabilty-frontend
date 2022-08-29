@@ -21,7 +21,7 @@ interface Day{
 const CheckDay = ({el, index, setClickIndex, clickIndex}:Day,)=>
 {
     const [checked, setChecked] = useState<boolean>(false);
-    //new changes
+    //new change
     const [isAvailable,setIsAvailable]=useState<boolean>(true);
     const msg:String="Unavailable";
     const[counter,setCounter]=useState<number>(1);
