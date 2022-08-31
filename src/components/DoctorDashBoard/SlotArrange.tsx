@@ -61,9 +61,10 @@ class SlotArrange extends Component<AppProps, State>
     }
 
 
-    onScheduleChange= (schedule: {start: string, end: string}[], i: number)=>{
+    onScheduleChange= (schedule: {start: string, end: string}[], i: number)=>
+    {
 
-    }
+    };
 
 
     handleCalenderChange = (val:any):void =>
@@ -151,7 +152,7 @@ class SlotArrange extends Component<AppProps, State>
                 <Container className="slot_body">
                     {/* <Modal onClose={() =>console.log("close")}> */}
                     {DAYS.map((el, index) =>(
-                        <CheckDay key={index} day={index} onChange={(sch)=>onScheduleChange(sch,index)}/>
+                        <CheckDay key={index} day={index} onChange={(sch)=>this.onScheduleChange(sch, index)}/>
                     ))}
                     <div className="btn-add">
                         <Button variant="outlined" size="small" onClick={()=> this.setState({slote:!this.state.slote})} >

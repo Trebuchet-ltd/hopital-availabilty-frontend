@@ -37,10 +37,12 @@ const getHelpModel = (type: PatientObject["request_type"])=>
     else if(type === "B")
         return HelpRequestBlood;
     return HelpRequest;
-}
+};
 
-class ViewHelp extends AuthComponent<NewProps, NewState> {
-    constructor(props: AuthPropsLoc) {
+class ViewHelp extends AuthComponent<NewProps, NewState> 
+{
+    constructor(props: AuthPropsLoc) 
+    {
         super(props);
         this.state = {
             ...this.state,
@@ -48,13 +50,17 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
         };
     }
 
-    givehelp = async (obj: PatientObject) => {
-        try {
+    givehelp = async (obj: PatientObject) => 
+    {
+        try 
+        {
             await obj.modify("help/");
             toast.success("Thank you for helping out", {
                 position: "bottom-center",
             });
-        } catch (error) {
+        }
+        catch (error) 
+        {
             console.error(error);
             toast.error((error as { details: string }).details, {
                 position: "bottom-center",
@@ -62,7 +68,8 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
         }
     };
 
-    componentDidMount() {
+    componentDidMount() 
+    {
         console.log(this, this.props.me);
         if(!this.props.match.params.id)
         {
@@ -70,7 +77,8 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
             return;
         }
 
-        HelpRequest.get(this.props.match.params.id, {}, true).then((patient: HelpRequestObject) => {
+        HelpRequest.get(this.props.match.params.id, {}, true).then((patient: HelpRequestObject) => 
+        {
             if(!patient)
                 this.props.history.goBack();
             const model = getHelpModel(patient.request_type);
@@ -80,7 +88,8 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
                 this.setState({isLoading: false});
                 return;
             }
-            model.get(this.props.match.params.id, {}, true).then((patient:HelpRequestObject)=>{
+            model.get(this.props.match.params.id, {}, true).then((patient:HelpRequestObject)=>
+            {
                 this.setState({model: patient});
                 this.setState({isLoading: false});
             });
@@ -88,7 +97,8 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
         });
     }
 
-    render() {
+    render() 
+    {
         if (this.state.isLoading)
             return (
                 <>

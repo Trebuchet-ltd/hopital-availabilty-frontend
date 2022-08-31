@@ -3,13 +3,12 @@
     width: 90%;
     border:1px solid rgba(128, 128, 128, 0.183);
     margin-bottom: 8px;
-    background-color:rgba(217, 217, 217, 0.64);
+    background-color:rgb(245, 244, 244);
 }
 .check_date{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    padding:0 10px;
 }
 
 .timeslot-wrapper{

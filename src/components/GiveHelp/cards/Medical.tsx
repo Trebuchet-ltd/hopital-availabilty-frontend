@@ -16,21 +16,21 @@ export interface Pat
 const getType = (type: string) =>
 {
     if (type === "M")
-    {
+    
         return "Medical";
-    }
+    
     else if (type === "FI")
-    {
+    
         return "Financial";
-    }
+    
     else if (type === "B")
-    {
+    
         return "Blood";
-    }
+    
     else if (type === "O")
-    {
+    
         return "Other";
-    }
+    
 
 };
 
@@ -39,7 +39,8 @@ const Medical = ({user, view}: Pat) =>
     const history = useHistory();
     React.useEffect(() =>
     {
-        Patient.action_general("all", {}, true).then((patients) => {
+        Patient.action_general("all", {}, true).then((patients) => 
+        {
             const results = patients.results;
             this.setState({models: results});
         });
@@ -60,7 +61,8 @@ const Medical = ({user, view}: Pat) =>
                 position: "bottom-center",
             });
             history.push("/help");
-        } catch (error)
+        }
+        catch (error)
         {
             console.error(error);
             toast.error((error as { details: string }).details, {
@@ -102,9 +104,9 @@ const Medical = ({user, view}: Pat) =>
                             <div className="bill">
                                 <img src={image} alt="bill pic" className="imgbill"/>
                                 <div className="stack-bill">
-                                <span className="textbill pdf">
-                                    <PictureAsPdfIcon/>
-                                </span>
+                                    <span className="textbill pdf">
+                                        <PictureAsPdfIcon/>
+                                    </span>
                                     <span className="textbill">medical_bill.pdf</span>
                                 </div>
                             </div>

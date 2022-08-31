@@ -20,7 +20,7 @@ export default function TimePicker({ lab, data }: prop)
     };
 
     return (
-        <FormControl sx={{ m: 1, minWidth: 100 }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 60 }} size="small">
             <InputLabel id="demo-simple-select-label">{lab}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
