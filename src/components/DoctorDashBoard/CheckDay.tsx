@@ -154,7 +154,7 @@ const CheckDay = ({ onChange, day }: Day) => {
                                         renderInput={(params) => <TextField {...params}
                                             helperText={errors.schedule?.[i]?.message}
                                             label="Time"
-                                            error={!!errors.schedule?.[i]} size="small" style={{marginRight:'10px'}} />}
+                                            error={!!errors.schedule?.[i]} size="small" style={{marginRight:'20px'}} />}
                                         {...field}
                                     // shouldDisableTime={(timeValue, clockType) =>
                                     // {
@@ -192,7 +192,7 @@ const CheckDay = ({ onChange, day }: Day) => {
 
                                     }
                                 />
-                                <button onClick={() => remove(i)}><DeleteOutlineIcon fontSize="large"/></button>
+                                <button onClick={() => remove(i)}><DeleteOutlineIcon fontSize="medium"/></button>
                             </div>
 
                         ))}
