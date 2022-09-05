@@ -1,19 +1,20 @@
-import {AuthComponent, AuthState, refresh_user} from "../../api/auth";
+import { AuthComponent, AuthState, refresh_user } from "../../api/auth";
 import React from "react";
-import {Route} from "react-router";
-import {ProfileDetails} from "./ProfileDetails";
+import { Route } from "react-router";
+import { ProfileDetails } from "./ProfileDetails";
 import "./profile.css";
-import {RequestDetails} from "./RequestDisplay";
+import { RequestDetails } from "./RequestDisplay";
+import { DoctorComponent } from "../Doctor/Doctor";
 
 
-export class Profile extends AuthComponent<Record<string, string|undefined>, AuthState>
+
+export class Profile extends AuthComponent<Record<string, string | undefined>, AuthState>
 {
-    render() 
-    {
+    render() {
         refresh_user();
 
-        if (this.state.auth) 
-        
+        if (this.state.auth)
+
             return (
                 <React.Fragment>
                     <Route path={"/profile/edit"}>
@@ -21,17 +22,16 @@ export class Profile extends AuthComponent<Record<string, string|undefined>, Aut
                     </Route>
 
                     <Route path="/profile/request/:requestId">
-                        <RequestDetails/>
+                        <RequestDetails />
                     </Route>
 
                     <Route exact={true} path={"/profile"}>
-                        <ProfileDetails/>
+                            <ProfileDetails />
                     </Route>
                 </React.Fragment>
             );
-        
-        else 
-        {
+
+        else {
             this.performAuth();
             return <></>;
         }
