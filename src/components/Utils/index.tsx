@@ -74,12 +74,12 @@ export const StarRating = ({rating}: { rating: number }) => (
 
 export const StickyHead = ({title, action, onClick, goBack}: StickyHeadProps) => (
     <>
-        <Container className=" tophead fixed-top d-flex justify-content-between p-3" style={{backgroundColor:'#e6e6e6'}}>
+        <Container className=" tophead fixed-top d-flex justify-content-between p-3 " style={{backgroundColor:'#e6e6e6'}}>
             <CloseIcon className="d-flex align-self-center" onClick={() => goBack()} style={{cursor:"pointer"}}/>
             <p className="align-self-center m-0 p-0 text-left flex-grow-1 pl-4"><b>{title}</b>
             </p>
             <Button className="sub" onClick={onClick}
-                variant="contained">{action || "Submit"}</Button>
+                variant="contained" size="small">{action || "Submit"}</Button>
 
         </Container>
         <div className=" mb-4 mt-4 pt-4 pb-2">

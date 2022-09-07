@@ -6,7 +6,7 @@ import {
     LocationSearchProps,
     LocationSearchState
 } from "./FullScreenLocation";
-import { TMarkerFilter, MarkerFilters, Marker, Department } from "../../api/model";
+import { TMarkerFilter, MarkerFilters, Marker } from "../../api/model";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CloseIcon from "@mui/icons-material/Close";
 import { getParam, setParam } from "../../api/QueryCreator";
@@ -21,25 +21,15 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import MyLocationOutlinedIcon from "@mui/icons-material/MyLocationOutlined";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import NorthWestIcon from "@mui/icons-material/NorthWest";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import SearchIcon from '@mui/icons-material/Search';
 import ClearAllIcon from "@mui/icons-material/ClearAll";
 import { PillSelect } from "../inputs/PillSelect";
-import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
 import TuneIcon from '@mui/icons-material/Tune';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface LocationQuerySearchProps extends LocationSearchProps {
@@ -85,55 +75,6 @@ const StyledChip = withStyles({
 const departments = ["Cardiology", "Anaesthesiology", "Dermatology", "Endocrinology", "Gastroenterology", "Oncology",
     "Nephrology", "Neurology", "Paediatrics", "Psychiatry", "Pulmonology", "Radiology", "Rheumatology", "Geriatrics", "Gynaecology", "Community Health", "ENT",
     "Dental", "Venerology", "Dietician", "Pathology", "General Physician", "Orthopaedics"];
-
-
-//used for insert search icon inside the input element
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
-    },
-}));
-
-
-
-
 
 export class LocationQuerySearchBoxLoc extends LocationSearchBoxLoc<LocationQuerySearchProps, LocationQuerySearchState>
 {
@@ -274,69 +215,52 @@ export class LocationQuerySearchBoxLoc extends LocationSearchBoxLoc<LocationQuer
     }
 
 
-
-
-
-
-
-
-
-
-
-
     render() {
         return (
             <div>
-                <Container>
-                    <div className=" w-100 d-flex justify-content-between ">
+                <Container
+                    >
+                    <div className=" w-100 d-flex justify-content-between align-self-center" >
                         <IconButton>
-                            <ArrowBackIosNewIcon onClick={() => this.props.history.goBack()} style={{ color: '#0945b5' }} />
+                            <ArrowBackIosIcon color="primary" onClick={() => this.props.history.goBack()} />
                         </IconButton>
-                        <button onClick={() => {
-                            this.setState({ location_active: !this.state.location_active }
-                            );
-                        }}>
-                            <Button sx={{ textTransform: "none", marginRight: "auto" }} startIcon={<LocationOnIcon style={{ color: 'red' }} />}
+
+                        <Button sx={{ textTransform: "none" }} style={{marginRight:'15px'}}  startIcon={<LocationOnIcon color="error" />}
                             onClick={() => (this.setState({ location_active: !this.state.location_active })
                             )}>
                             {this.state.value || "Select Location"}
                         </Button>
-                        </button>
+                        <Button style={{ backgroundColor:'#ededed',borderRadius:'10px' }} startIcon={<SearchIcon fontSize="medium" style={{ color: 'black' }} />}>
+                            <input placeholder="" className="main-input w-100  pt-1"
+                                value={this.state.query}
+                                type="search"
+                                style={{borderRadius:'10px',backgroundColor:'#ededed'}}
+
+                                onKeyDown={(event) => {
+                                    this.handleKeyDownSearch(event);
+                                }}
+                                onChange={(event) => {
+                                    this.SuggestLocationsSearch(event,).then();
+                                }}
+                                onFocusCapture={() => {
+                                    this.setState({ display: 1 });
+                                }}
+                            />
+
+                        </Button>
+                     
+                        {this.state.query &&
+                            <ArrowCircleRightIcon color={"primary"} sx={{ width: 30 }} className="align-self-center" onClick={() => {
+                                this.searchCallBack();
+                            }} />
+                        }
+                        <Button style={{ marginTop: '5px' }} onClick={() => (this.setState({ filter_active: !this.state.filter_active })
+                        )}>
+                            <TuneIcon color="primary" fontSize="large" />
+                        </Button>
 
 
-                        <div style={{ backgroundColor: '#ebeced', borderRadius: '5px' }}>
 
-
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Search Hospital"
-                                    className="main-input w-75 mx-2 align-content-start pt-1"
-                                    value={this.state.query}
-                                    inputProps={{ 'aria-label': 'search' }}
-                                    type="search"
-                                    onKeyDown={(event: any) => {
-                                        this.handleKeyDownSearch(event);
-                                    }}
-                                    onChange={(event: any) => {
-                                        this.SuggestLocationsSearch(event,).then();
-                                    }}
-                                    onFocusCapture={() => {
-                                        this.setState({ display: 1 });
-                                    }}
-                                />
-                            </Search>
-                            {this.state.query &&
-                                <ArrowCircleRightIcon color={"primary"} sx={{ width: 30 }} className="align-self-center" onClick={() => {
-                                    this.searchCallBack();
-                                }} />
-                            }
-                        </div>
-                        <button onClick={() => (this.setState({ filter_active: !this.state.filter_active }))}>
-                            <TuneIcon fontSize="large" style={{ color: '#0945b5' }} />
-                        </button>
 
                     </div>
 
@@ -352,13 +276,9 @@ export class LocationQuerySearchBoxLoc extends LocationSearchBoxLoc<LocationQuer
                 </Container>
                 <div className="d-flex align-items-center p-2 flex-column"
                     style={{ boxShadow: "0px 6px 6.25px rgba(0, 0, 0, 0.25)" }}>
-
                     {/*<LocationOnIcon sx={{marginRight: "auto"}}*/}
                     {/*    onClick={() => (this.setState({location_active: !this.state.location_active})*/}
                     {/*    )}/>*/}
-                    <div className="d-flex align-items-center w-100">
-                        
-                    </div>
 
                     <div className="bottombox w-100 py-1" style={{ overflowX: "auto", whiteSpace: "nowrap" }}>
                         {
@@ -474,83 +394,72 @@ export class LocationQuerySearchBoxLoc extends LocationSearchBoxLoc<LocationQuer
                         clear
                     </Button> : <></>}
                     <div className="filterbottom d-flex flex-column">
+                        <Accordion>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <div className="filterhead text-center w-100 mb-4 mt-4 ">Types</div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div className="chips d-flex flex-wrap justify-content-between align-items-center">
 
+                                    <PillSelect values={MarkerFilters.choiceList.category__in ?? {}} selected={this.state.filters.category__in ?? []} onChange={(v) => this.handlePillSelect("category__in", v)} />
+
+                                </div>
+                            </AccordionDetails>
+                        </Accordion>
 
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
                             >
-                                <Typography><div className="filterhead text-center w-100 mb-4 mt-4 ">Types</div></Typography>
-                            </AccordionSummary>
+                        <div className="filterhead text-center w-100 mb-4 mt-2 ">Departments</div>
+                        </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
-                                    <div className="chips d-flex flex-wrap justify-content-between align-items-center">
+                        <div className="chips d-flex flex-wrap justify-content-between align-items-center">
 
+                            <PillSelect values={Object(departments)} selected={[]} onChange={(v) => ""} />
 
-
-                                        <PillSelect values={MarkerFilters.choiceList.category__in ?? {}} selected={this.state.filters.category__in ?? []} onChange={(v) => this.handlePillSelect("category__in", v)} />
-
-                                    </div>
-                                </Typography>
-                            </AccordionDetails>
-
+                        </div>
+                        </AccordionDetails>
                         </Accordion>
 
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
                             >
-                                <Typography><div className="filterhead text-center w-100 mb-4 mt-2 ">Departments</div></Typography>
-                            </AccordionSummary>
+                        <div className="filterhead text-center w-100 mb-4 mt-2 ">Ownership</div>
+                        </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
-                                    <div className="chips d-flex flex-wrap justify-content-between align-items-center">
+                        <div className="chips d-flex flex-wrap justify-content-between align-items-center">
 
-                                        <PillSelect values={Object(departments)} selected={[]} onChange={(v) => ""} />
+                            <PillSelect values={MarkerFilters.choiceList.ownership__in ?? {}} selected={this.state.filters.ownership__in ?? []} onChange={(v) => this.handlePillSelect("ownership__in", v)} />
 
-                                    </div>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
+                        </div>
+                        </AccordionDetails>
+                        </Accordion> 
+                        
                         <Accordion>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
                             >
-                                <div className="filterhead text-center w-100 mb-4 mt-2 ">Ownership</div>
-                            </AccordionSummary>
+                        <div className="filterhead text-center w-100 mb-4 mt-2 ">Medicine</div>
+                        </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
-                                    <div className="chips d-flex flex-wrap justify-content-between align-items-center">
+                        <div className="chips d-flex flex-wrap justify-content-around align-items-center">
 
-                                        <PillSelect values={MarkerFilters.choiceList.ownership__in ?? {}} selected={this.state.filters.ownership__in ?? []} onChange={(v) => this.handlePillSelect("ownership__in", v)} />
+                            <PillSelect values={MarkerFilters.choiceList.medicine__in ?? {}} selected={this.state.filters.medicine__in ?? []} onChange={(v) => this.handlePillSelect("medicine__in", v)} />
 
-                                    </div>
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2a-content"
-                                id="panel2a-header"
-                            >
-                                <div className="filterhead text-center w-100 mb-4 mt-2 ">Medicine</div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    <div className="chips d-flex flex-wrap justify-content-around align-items-center">
-
-                                        <PillSelect values={MarkerFilters.choiceList.medicine__in ?? {}} selected={this.state.filters.medicine__in ?? []} onChange={(v) => this.handlePillSelect("medicine__in", v)} />
-
-                                    </div>
-                                </Typography>
-                            </AccordionDetails>
+                        </div>
+                        </AccordionDetails>
                         </Accordion>
                     </div>
 

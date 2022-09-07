@@ -130,7 +130,8 @@ type token = {
     language: Array<LanguageObject>,
     address: string,
     age: number,
-    gender:string
+    gender:string,
+    doctor:boolean
 }
 
 export interface AuthState extends ResponsiveState {

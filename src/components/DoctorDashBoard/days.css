@@ -1,19 +1,29 @@
 .box{
     min-height:40px;
-    width: 100%;
-    border:1px solid rgba(231, 229, 229, 0.772);
+    width: 90%;
+    border:1px solid rgba(128, 128, 128, 0.183);
     margin-bottom: 8px;
-    background-color:rgba(244, 244, 244, 0.864);;
-    box-shadow:0px 0px 1px black;
+    background-color:rgb(245, 244, 244);
 }
 .check_date{
     display:flex;
-    flex-direction:column;
-    justify-content: left;
-    /*new change*/
-    padding:0 10px;
-    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.timeslot-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.timeslot{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+
 h5{
     font-size:18px;
     font-weight:600;    

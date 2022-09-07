@@ -4,14 +4,21 @@ import Loader from "react-loader-spinner";
 import {withRouter} from "react-router";
 import {toast} from "react-toastify";
 import {AuthComponent, AuthState} from "../../../api/auth";
-import {Patient, PatientObject} from "../../../api/model";
+import {
+    HelpRequest,
+    HelpRequestBlood,
+    HelpRequestFinancial,
+    HelpRequestMedical, HelpRequestObject,
+    Patient,
+    PatientObject
+} from "../../../api/model";
 import {StickyHead} from "../../Utils";
 import Medical from "../cards/Medical";
 import {AuthPropsLoc} from "../GiveHelp";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface NewState extends AuthState {
-    model: PatientObject;
+    model: HelpRequestObject;
     isLoading: boolean;
 }
 
@@ -20,8 +27,22 @@ interface NewProps extends AuthPropsLoc {
     me?: boolean;
 }
 
-class ViewHelp extends AuthComponent<NewProps, NewState> {
-    constructor(props: AuthPropsLoc) {
+
+const getHelpModel = (type: PatientObject["request_type"])=>
+{
+    if(type === "M")
+        return HelpRequestMedical;
+    else if(type ==="FI")
+        return HelpRequestFinancial;
+    else if(type === "B")
+        return HelpRequestBlood;
+    return HelpRequest;
+};
+
+class ViewHelp extends AuthComponent<NewProps, NewState> 
+{
+    constructor(props: AuthPropsLoc) 
+    {
         super(props);
         this.state = {
             ...this.state,
@@ -29,13 +50,17 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
         };
     }
 
-    givehelp = async (obj: PatientObject) => {
-        try {
+    givehelp = async (obj: PatientObject) => 
+    {
+        try 
+        {
             await obj.modify("help/");
             toast.success("Thank you for helping out", {
                 position: "bottom-center",
             });
-        } catch (error) {
+        }
+        catch (error) 
+        {
             console.error(error);
             toast.error((error as { details: string }).details, {
                 position: "bottom-center",
@@ -43,23 +68,37 @@ class ViewHelp extends AuthComponent<NewProps, NewState> {
         }
     };
 
-    componentDidMount() {
+    componentDidMount() 
+    {
         console.log(this, this.props.me);
-        Patient.action_general(this.props.me ? "help" : "all", {}, true).then((patients) => {
-            const id: string = this.props.match.params.id as string;
-            if (!id) this.props.history.push("/help");
-            const results = patients.results;
-            this.setState({model: results});
-            const user = results.find((el: PatientObject) => el.id === parseInt(id));
-            console.log(results);
-            // if (!user) this.props.history.push("/help");
-            this.setState({model: user});
-            this.setState({isLoading: false});
+        if(!this.props.match.params.id)
+        {
+            this.props.history.goBack();
+            return;
+        }
+
+        HelpRequest.get(this.props.match.params.id, {}, true).then((patient: HelpRequestObject) => 
+        {
+            if(!patient)
+                this.props.history.goBack();
+            const model = getHelpModel(patient.request_type);
+            if( model === HelpRequest)
+            {
+                this.setState({model: patient});
+                this.setState({isLoading: false});
+                return;
+            }
+            model.get(this.props.match.params.id, {}, true).then((patient:HelpRequestObject)=>
+            {
+                this.setState({model: patient});
+                this.setState({isLoading: false});
+            });
             console.log(this.state.model);
         });
     }
 
-    render() {
+    render() 
+    {
         if (this.state.isLoading)
             return (
                 <>

@@ -69,7 +69,8 @@ const theme = createTheme({
     },
 });
 
-function Suspense({children}: { children: React.ReactNode }) {
+function Suspense({children}: { children: React.ReactNode }) 
+{
     return <React.Suspense fallback={<>LOADING...</>}>
         {children}
     </React.Suspense>;
@@ -81,13 +82,15 @@ interface AppRouterProps {
 
 type AppProps = RouteComponentProps<AppRouterProps>;
 
-class AppLoc extends React.Component<AppProps> {
+class AppLoc extends React.Component<AppProps> 
+{
     /**
      * Initialize props
      * Set the location into history stack
      */
 
-    constructor(props: AppProps) {
+    constructor(props: AppProps) 
+    {
         super(props);
         const location = this.props.location.pathname + this.props.location.search;
         this.props.history.replace(location);
@@ -97,7 +100,8 @@ class AppLoc extends React.Component<AppProps> {
     /**
      * componentDidMount() method allows us to execute the React code even after component is rendered
      */
-    componentDidMount() {
+    componentDidMount() 
+    {
         getParam("lat", "", true);
         getParam("lng", "", true);
         getParam("loc", "Search Location", true);
@@ -107,14 +111,16 @@ class AppLoc extends React.Component<AppProps> {
     /**
      * componentDidUpdate() method use to execute the code when the state of component changes
      */
-    componentDidUpdate() {
+    componentDidUpdate() 
+    {
         getParam("lat", "", true);
         getParam("lng", "", true);
         getParam("loc", "Search Location", true);
         getParam("query", "Search Hospital", true);
     }
 
-    render() {
+    render() 
+    {
         return (
             <div className="App">
                 {/*

@@ -21,7 +21,8 @@ export interface PatientState extends AuthState {
     isLoading: boolean;
 }
 
-const getType = (type: string) => {
+const getType = (type: string) => 
+{
     if (type === "M")
         return "Medical";
     else if (type === "FI")
@@ -34,8 +35,10 @@ const getType = (type: string) => {
 };
 export type AuthPropsLoc = RouteComponentProps<Record<string, string | undefined>>;
 
-export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
-    constructor(props: AuthPropsLoc) {
+export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> 
+{
+    constructor(props: AuthPropsLoc) 
+    {
         super(props);
         this.state = {
             ...this.state,
@@ -61,19 +64,23 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
     ];
     tab_name = ["Requests", "Helped by you"];
 
-    componentDidMount() {
-        Patient.action_general("all", {}, true).then((patients) => {
+    componentDidMount() 
+    {
+        Patient.action_general("all", {}, true).then((patients) => 
+        {
             const results = patients.results;
             this.setState({models: results});
         });
-        Patient.action_general("help", {}, true).then((patients) => {
+        Patient.action_general("help", {}, true).then((patients) => 
+        {
             const results = patients.results;
             this.setState({helped_models: results});
         });
         this.setState({isLoading: false});
     }
 
-    getgender = (gender: string) => {
+    getgender = (gender: string) => 
+    {
         if (gender === "M")
 
             return <img src={Maleicon} alt=""/>;
@@ -89,13 +96,17 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
         else if (gender === "NP") return <img src={PrefNSay} alt=""/>;
     };
 
-    givehelp = async (obj: PatientObject) => {
-        try {
+    givehelp = async (obj: PatientObject) => 
+    {
+        try 
+        {
             await obj.modify("help/");
             toast.success("Thank you for helping out", {
                 position: "bottom-center",
             });
-        } catch (error) {
+        }
+        catch (error) 
+        {
             console.error(error);
             toast.error((error as { details: string }).details, {
                 position: "bottom-center",
@@ -103,7 +114,8 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
         }
     };
 
-    fields = () => {
+    fields = () => 
+    {
         let model;
         if (this.state.currenttab === 0)
 
@@ -138,22 +150,9 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
                                                     <div>Description :{obj.reason}</div>
                                                 </div>
                                             </div>
-                                            <div className="lefttxt ">
-                                                {
-                                                    obj.request_type === "M" && <div className="subtitle">
-                                                        <div>Symptoms:{obj.symptoms}</div>
-                                                        <div>Since:{obj.symdays}</div>
 
-                                                    </div>
-                                                }
-                                            </div>
                                             <div className=" subtitle  pt-4 ">
-                                                {
 
-                                                    obj.request_type === "B" && <div className="mt-1">
-                                                        <div>Blood group:{obj.blood}</div>
-                                                    </div>
-                                                }
                                                 <Button
                                                     //   onClick={() => this.givehelp(obj)}
                                                     onClick={() =>
@@ -209,17 +208,22 @@ export class GiveHelp extends AuthComponent<AuthPropsLoc, PatientState> {
     //             position: 'bottom-center'
     //         })
     // }
-    handleChange = () => {
+    handleChange = () => 
+    {
         this.setState({
             currenttab: this.state.currenttab + 1,
         });
     };
 
-    render() {
-        if (!this.state.auth) {
+    render() 
+    {
+        if (!this.state.auth) 
+        {
             this.performAuth();
             return <></>;
-        } else {
+        }
+        else 
+        {
             console.log(this.state);
             return (
                 <div className="mb-3 ">

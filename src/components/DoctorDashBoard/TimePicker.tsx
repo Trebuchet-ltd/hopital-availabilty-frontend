@@ -7,7 +7,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 interface prop {
   lab: string;
   data: string[];
-  
 }
 
 export default function TimePicker({ lab, data }: prop) 
@@ -16,11 +15,12 @@ export default function TimePicker({ lab, data }: prop)
 
     const handleChange = (event: SelectChangeEvent) => 
     {
+        console.log(event);
         setAge(event.target.value as string);
     };
 
     return (
-        <FormControl sx={{ m: 0.5, minWidth: 90 }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 60 }} size="small">
             <InputLabel id="demo-simple-select-label">{lab}</InputLabel>
             <Select
                 labelId="demo-simple-select-label"
@@ -29,12 +29,9 @@ export default function TimePicker({ lab, data }: prop)
                 label={lab}
                 onChange={handleChange}
             >
-                {data.map((item,index) => {
-                   return(
-                        <MenuItem key={index} value={item}>{item}</MenuItem>
-                   )
-                   
-                   })}
+                {data.map((item, i) => (
+                    <MenuItem key={i} value={item}>{item}</MenuItem>
+                ))}
             </Select>
         </FormControl>
     );
