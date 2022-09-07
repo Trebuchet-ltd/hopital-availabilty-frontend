@@ -1,7 +1,7 @@
 import { AuthComponent, AuthPropsLoc, AuthState, reactUrl } from "../../api/auth";
 import { Container, Avatar, Modal, Slider, TextField } from "@mui/material";
 import { withRouter } from "react-router";
-import React from "react";
+import * as React from "react";
 import { CSSTransition } from "react-transition-group";
 import { Patient, PatientObject } from "../../api/model";
 import { Link } from "react-router-dom";
@@ -19,7 +19,6 @@ import DoctorAppointments from '../../images/appointments.svg';
 import Bloodgrp from "../../images/bloodgroup.svg";
 import CovidPos from "../../images/corpos.svg";
 import CovidNeg from "../../images/corneg.svg";
-import Button from "@mui/material/Button";
 
 import Maleicon from "../../images/male.svg";
 import Femaleicon from "../../images/female.svg";
@@ -36,6 +35,18 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import WorkHistoryOutlinedIcon from '@mui/icons-material/WorkHistoryOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+
+
 
 
 
@@ -78,7 +89,8 @@ export class ProfileDetailsLoc extends AuthComponent<AuthPropsLoc, ProfileDetail
             show_share: false,
             requests: [],
             friend_request: [],
-            tab: 0
+            tab: 0,
+
         };
     }
 
@@ -303,6 +315,7 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
     );
 
     render() {
+
         return (
             <div>
                 <this.friendPopUp />
@@ -313,7 +326,29 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
 
                                 <ArrowBackIcon onClick={() => this.props.history.push("/")} />
                                 <p className="Yourprof w-100 text-left align-self-center ">Your Profile</p>
-                                <MoreVertIcon />
+
+                                <PopupState variant="popover" popupId="demo-popup-menu">
+                                    {(popupState) => (
+                                        <>
+
+                                            <IconButton {...bindTrigger(popupState)}>
+                                                <MoreVertIcon />
+                                            </IconButton>
+
+                                            <Menu {...bindMenu(popupState)}>
+                                                <MenuItem onClick={popupState.close}><SettingsOutlinedIcon style={{ marginRight: '3px' }} />Settings</MenuItem>
+
+                                                {this.state.user?.tokens.doctor &&
+                                                    <MenuItem onClick={() => this.props.history.push("/doctor")}><WorkHistoryOutlinedIcon style={{ marginRight: '3px' }} />Availability</MenuItem>
+                                                }
+                                                <MenuItem onClick={popupState.close}><InfoOutlinedIcon style={{ marginRight: '3px' }} />About</MenuItem>
+                                                <MenuItem onClick={async () => await this.removeAuth() && (window.location.href = "/")}><PowerSettingsNewOutlinedIcon style={{ marginRight: '3px' }} />Logout</MenuItem>
+                                            </Menu>
+                                        </>
+                                    )}
+                                </PopupState>
+
+
 
                             </div>
                             <div className="userbox d-flex flex-row align-content-around">
@@ -384,11 +419,18 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
                                 {/* conditional rendering if it is user or doctor */}
 
                                 {this.state.user?.tokens.doctor ?
-                                    <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
-                                        onClick={() => this.setState({ tab: 2 })}>
-                                        <img src={DoctorAppointments} alt={"layout svg"} />
-                                        <p className="m-0"><b>{"0"}</b><br />Appointments</p>
-                                    </button>
+                                    <>
+                                        <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
+                                            onClick={() => {
+                                                this.setState({ tab: 2 })
+
+                                            }}>
+                                            <img src={DoctorAppointments} alt={"layout svg"} />
+                                            <p className="m-0"><b>{"0"}</b><br />Appointments</p>
+                                        </button>
+
+                                    </>
+
 
                                     :
 
@@ -401,6 +443,13 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
 
                             </div>
                         </Container>
+                        {this.state.user?.tokens.doctor &&
+                            <ButtonGroup color="inherit" size="large" variant="contained" aria-label="large inherit outlined button group">
+                                <Button style={{ textTransform: 'capitalize', color: 'gray' }}>List View</Button>
+                                <Button style={{ textTransform: 'capitalize', color: 'gray' }}>Calender View</Button>
+
+                            </ButtonGroup>
+                        }
                         {this.getTab()}
 
                         {this.state.tab === 1 && <SpeedDial
