@@ -90,10 +90,10 @@ export class ProfileDetailsLoc extends AuthComponent<AuthPropsLoc, ProfileDetail
             requests: [],
             friend_request: [],
             tab: 0,
-
+          
         };
     }
-
+   
     hashChange = () => {
         if (!this.props.location.hash.includes("share"))
 
@@ -423,7 +423,7 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
                                         <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
                                             onClick={() => {
                                                 this.setState({ tab: 2 })
-
+                                                
                                             }}>
                                             <img src={DoctorAppointments} alt={"layout svg"} />
                                             <p className="m-0"><b>{"0"}</b><br />Appointments</p>
@@ -450,6 +450,7 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
 
                             </ButtonGroup>
                         }
+                        
                         {this.getTab()}
 
                         {this.state.tab === 1 && <SpeedDial
