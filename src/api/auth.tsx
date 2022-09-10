@@ -116,6 +116,7 @@ export interface Friend {
     profile: string,
     last_seen?: string,
     invited: boolean,
+    check:boolean
 }
 
 
