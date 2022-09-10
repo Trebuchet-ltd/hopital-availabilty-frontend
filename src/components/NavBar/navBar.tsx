@@ -99,16 +99,19 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
 
                             this.setState({ show_search: !this.state.show_search });
                         }}>
-                            <SearchIcon />
-                            <span style={{ display: 'inline', fontSize: '10px' }}>Search Hospital</span>
-                        </IconButton>
 
-
-
-                        <Badge onClick={() => {
-                            this.props.history.push("/notification");
-                        }} badgeContent={0} sx={{ marginRight: ".25rem" }} color="primary">
-                            <NotificationsNoneIcon sx={{ width: "28px", height: "28px",position:'fixed',right:'3px',top:'15px' }} color="primary" />
+                            <div style={{backgroundColor:'#ebebeb',padding:'3px 5px',borderRadius:'10px'}}>
+                            <IconButton>
+                                <SearchIcon/>
+                            </IconButton>
+                            Search Hospitals
+                            </div>
+                        </button>
+                        <Badge onClick={() =>
+                        {
+                            this.props.history.push( "/notification");
+                        }} badgeContent={0} sx={{marginRight: ".25rem"}} color="primary">
+                            <NotificationsNoneIcon sx={{width:"28px", height : "28px"}} color="primary" />
                         </Badge>
                         {/*<Avatar className="mr-2" sx={{width:"28px", height : "28px", marginRight: ".5rem"}}*/}
                         {/*    src={this.state.user?.tokens?.profile || undefined}>{this.state.user ? this.state.user.username ? this.state.user.username[0] : "?" : "?"}</Avatar>*/}
@@ -151,6 +154,7 @@ export class NavBarLoc extends AuthComponent<NavBarProp, NavBarState>
                             this.setState({ show_search: false });
                         }} />
                     </CSSTransition>
+
                 }
             </AppBar>
 

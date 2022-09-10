@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Chip, } from "@mui/material";
 import { withStyles } from "@mui/styles";
 
+
 interface PillSelectProps<T extends { [k: string]: string }> {
     values: T,
     onChange: (v:keyof T) => void,
@@ -46,9 +47,11 @@ export class PillSelect<T extends { [k: string]: string }> extends Component<Pil
     {
         return Object.entries(this.props.values).map(([value, label], key) => (
             <div key={key} className="child mb-2">
+
                 <StyledChip onClick={() => this.props.onChange(value)}
                     sx={this.props.selected.includes(value) ? bluechip : greychip}
                     label={label} />
+                    <br />
             </div>
         ));
     }
