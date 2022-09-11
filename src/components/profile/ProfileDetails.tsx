@@ -77,7 +77,9 @@ interface ProfileDetailsState extends AuthState {
     requests: PatientObject[];
     friend_request: PatientObject[];
     popUp: boolean;
+    check: boolean;
 }
+
 
 
 export class ProfileDetailsLoc extends AuthComponent<AuthPropsLoc, ProfileDetailsState>
@@ -90,10 +92,13 @@ export class ProfileDetailsLoc extends AuthComponent<AuthPropsLoc, ProfileDetail
             requests: [],
             friend_request: [],
             tab: 0,
-          
+            check: false
+
         };
+
     }
-   
+
+
     hashChange = () => {
         if (!this.props.location.hash.includes("share"))
 
@@ -394,26 +399,37 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
                                 {/* conditional rendering if it is user or doctor */}
 
                                 {this.state.user?.tokens.doctor ?
-
-                                    <button className={`card-about card-1 ${this.state.tab === 0 && "active"}`}
-                                        onClick={() => this.setState({ tab: 0 })}>
-                                        <img src={History} alt={"doctor svg"} />
-                                        <p className="m-0"><b>{this.state.requests?.length}</b><br />Histroy</p>
-                                    </button>
-
+                                    <>
+                                        <button className={`card-about card-1 ${this.state.tab === 0 && "active"}`}
+                                            onClick={() => {
+                                                this.setState({ tab: 0 })
+                                                this.setState({ check: false })
+                                            }
+                                            }
+                                        >
+                                            <img src={History} alt={"doctor svg"} />
+                                            <p className="m-0" style={{ fontSize: '11px' }}><b>{this.state.requests?.length}</b><br />Histroy</p>
+                                        </button>
+                                    </>
                                     :
+                                    <>
+                                        <button className={`card-about card-1 ${this.state.tab === 0 && "active"}`}
+                                            onClick={() => this.setState({ tab: 0 })}>
+                                            <img src={Record} alt={"doctor svg"} />
+                                            <p className="m-0" style={{ fontSize: '11px' }}><b>{this.state.requests?.length}</b><br />Medical Record</p>
+                                        </button>
+                                    </>
 
-                                    <button className={`card-about card-1 ${this.state.tab === 0 && "active"}`}
-                                        onClick={() => this.setState({ tab: 0 })}>
-                                        <img src={Record} alt={"doctor svg"} />
-                                        <p className="m-0"><b>{this.state.requests?.length}</b><br />Medical Record</p>
-                                    </button>
                                 }
 
                                 <button className={`card-about card-1 ${this.state.tab === 1 && "active"}`}
-                                    onClick={() => this.setState({ tab: 1 })}>
+                                    onClick={() => {
+                                        this.setState({ tab: 1 })
+                                        this.setState({ check: false })
+
+                                    }}>
                                     <img src={reviewsvg} alt={"review svg"} />
-                                    <p className="m-0"><b>{this.state.user?.friends?.length || 0}</b><br />Friends</p>
+                                    <p className="m-0" style={{ fontSize: '11px' }}><b>{this.state.user?.friends?.length || 0}</b><br />Friends</p>
                                 </button>
 
                                 {/* conditional rendering if it is user or doctor */}
@@ -423,34 +439,38 @@ Labs, Blood donors & more Online Medical Services... coming soon on Needmedi.com
                                         <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
                                             onClick={() => {
                                                 this.setState({ tab: 2 })
-                                                
+                                                this.setState({ check: true })
                                             }}>
                                             <img src={DoctorAppointments} alt={"layout svg"} />
-                                            <p className="m-0"><b>{"0"}</b><br />Appointments</p>
+                                            <p className="m-0" style={{ fontSize: '11px' }}><b>{"0"}</b><br />Appointments</p>
                                         </button>
-
                                     </>
 
 
                                     :
+                                    <>
+                                        <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
+                                            onClick={() => this.setState({ tab: 2 })}>
+                                            <img src={offers} alt={"layout svg"} />
+                                            <p className="m-0" style={{ fontSize: '11px' }} ><b>{"0"}</b><br />Offers</p>
+                                        </button>
+                                    </>
 
-                                    <button className={`card-about card-1 ${this.state.tab === 2 && "active"}`}
-                                        onClick={() => this.setState({ tab: 2 })}>
-                                        <img src={offers} alt={"layout svg"} />
-                                        <p className="m-0"><b>{"0"}</b><br />Offers</p>
-                                    </button>
                                 }
 
                             </div>
                         </Container>
-                        {this.state.user?.tokens.doctor &&
+                        {this.state.check && this.state.user?.tokens.doctor ?
                             <ButtonGroup color="inherit" size="large" variant="contained" aria-label="large inherit outlined button group">
                                 <Button style={{ textTransform: 'capitalize', color: 'gray' }}>List View</Button>
                                 <Button style={{ textTransform: 'capitalize', color: 'gray' }}>Calender View</Button>
 
                             </ButtonGroup>
+                            :
+                            ''
                         }
-                        
+
+
                         {this.getTab()}
 
                         {this.state.tab === 1 && <SpeedDial
